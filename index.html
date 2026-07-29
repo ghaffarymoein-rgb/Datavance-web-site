@@ -65,9 +65,8 @@
   <header class="sticky top-0 z-50 border-b border-borderLight bg-white/80 backdrop-blur-md">
     <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
       <a href="#home" class="flex items-center gap-3">
-        <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brandDark text-white font-bold text-lg shadow-sm">
-          d
-        </span>
+        <!-- Main Logo Integration -->
+        <img src="image/logo.png" alt="datavance Logo" class="h-9 w-auto object-contain" onerror="this.onerror=null; this.outerHTML='<span class=\'inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brandDark text-white font-bold text-lg shadow-sm\'>d</span>';" />
         <div class="leading-tight">
           <div class="text-base font-bold tracking-tight text-brandDark">datavance</div>
           <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">data + advance</div>
@@ -111,7 +110,7 @@
             سیستم‌سازی و بهینه‌سازی داده‌محور
           </span>
 
-          <h1 class="text-3xl font-extrabold leading-[1.15] text-brandDark sm:text-5xl lg:text-6xl">
+          <h1 class="text-4xl font-extrabold leading-[1.15] text-brandDark sm:text-5xl lg:text-6xl">
             توسعه و ارتقای کسب‌وکار با تحلیل هوشمند داده‌ها
           </h1>
 
@@ -173,6 +172,56 @@
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- New 16:9 Image Slider Section (with error handling) -->
+    <section class="mx-auto max-w-6xl px-6 pb-20 reveal">
+      <div class="relative w-full overflow-hidden rounded-3xl border border-borderLight bg-white shadow-card">
+        <!-- Slider Container with 16:9 Aspect Ratio -->
+        <div class="relative w-full aspect-[16/9] md:aspect-[16/9]">
+          
+          <!-- Slide 1 -->
+          <div class="slide-item absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100 z-10">
+            <img src="image/picture_1.png" alt="پروژه اول دیتاونس" class="w-full h-full object-cover" 
+                 onerror="handleImageError(this, 'تصویر شماره ۱ بارگذاری نشد');" />
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="slide-item absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0">
+            <img src="image/picture_2.png" alt="پروژه دوم دیتاونس" class="w-full h-full object-cover" 
+                 onerror="handleImageError(this, 'تصویر شماره ۲ بارگذاری نشد');" />
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="slide-item absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0">
+            <img src="image/picture_3.png" alt="پروژه سوم دیتاونس" class="w-full h-full object-cover" 
+                 onerror="handleImageError(this, 'تصویر شماره ۳ بارگذاری نشد');" />
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="slide-item absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0">
+            <img src="image/picture_4.png" alt="پروژه چهارم دیتاونس" class="w-full h-full object-cover" 
+                 onerror="handleImageError(this, 'تصویر شماره ۴ بارگذاری نشد');" />
+          </div>
+
+        </div>
+
+        <!-- Slider Controls (Prev/Next) -->
+        <button onclick="prevSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-brandDark backdrop-blur-sm border border-borderLight shadow-sm transition hover:bg-white hover:scale-105 active:scale-95" aria-label="تصویر قبلی">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+        <button onclick="nextSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-brandDark backdrop-blur-sm border border-borderLight shadow-sm transition hover:bg-white hover:scale-105 active:scale-95" aria-label="تصویر بعدی">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+
+        <!-- Slider Dots/Indicators -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          <button onclick="goToSlide(0)" class="slide-dot h-2 w-8 rounded-full bg-brandPink transition-all" aria-label="اسلاید ۱"></button>
+          <button onclick="goToSlide(1)" class="slide-dot h-2 w-2 rounded-full bg-slate-300 transition-all" aria-label="اسلاید ۲"></button>
+          <button onclick="goToSlide(2)" class="slide-dot h-2 w-2 rounded-full bg-slate-300 transition-all" aria-label="اسلاید ۳"></button>
+          <button onclick="goToSlide(3)" class="slide-dot h-2 w-2 rounded-full bg-slate-300 transition-all" aria-label="اسلاید ۴"></button>
+        </div>
       </div>
     </section>
 
@@ -483,48 +532,105 @@
 
   <!-- Footer -->
   <footer class="border-t border-borderLight bg-slate-50 py-12">
-    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 text-sm text-slate-400 md:flex-row">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
       <div class="flex items-center gap-3">
-        <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-brandDark text-white font-bold text-sm shadow-sm">d</span>
-        <span>© 2026 datavance | مشهد، پارک علم و فناوری فردوسی</span>
+        <img src="image/logo.png" alt="datavance Logo" class="h-8 w-auto object-contain" onerror="this.onerror=null; this.outerHTML='<span class=\'inline-flex h-8 w-8 items-center justify-center rounded-xl bg-brandDark text-white font-bold text-base shadow-sm\'>d</span>';" />
+        <span class="text-sm font-bold text-brandDark">datavance</span>
       </div>
-      <div class="flex gap-4">
-        <a href="#about" class="hover:text-brandDark">معرفی تیم</a>
-        <a href="#services" class="hover:text-brandDark">خدمات تخصصی</a>
-        <a href="#contact" class="hover:text-brandDark">ارتباط با ما</a>
-      </div>
+      <p class="text-xs text-slate-400 text-center md:text-right">
+        کلیه حقوق مادی و معنوی متعلق به تیم مهندسی صنایع و تحلیل داده datavance می‌باشد.
+      </p>
     </div>
   </footer>
 
+  <!-- Scripts for Mobile Menu, Scroll Reveal & Slider logic -->
   <script>
-    // Reveal animation logic
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Mobile menu toggle
+    // Mobile Menu Toggle
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Simple Scroll Reveal implementation
+    const revealElements = document.querySelectorAll('.reveal');
+    const checkReveal = () => {
+      const triggerBottom = window.innerHeight * 0.9;
+      revealElements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < triggerBottom) {
+          el.classList.add('is-visible');
+        }
       });
-      // Close menu on link click
-      mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-        });
+    };
+    window.addEventListener('scroll', checkReveal);
+    window.addEventListener('load', checkReveal);
+
+    // Image Error Handler Function (Fallback Layout)
+    function handleImageError(image, errorMessage) {
+      image.onerror = null; // Prevent infinite loops
+      const container = image.parentElement;
+      container.innerHTML = `
+        <div class="flex flex-col items-center justify-center w-full h-full bg-slate-100 border border-dashed border-borderLight text-slate-400 p-6">
+          <svg class="w-12 h-12 mb-3 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <span class="text-xs font-semibold tracking-wide">${errorMessage}</span>
+          <span class="text-[10px] text-slate-400 mt-1">لطفاً مسیر تصویر را در پوشه image بررسی کنید</span>
+        </div>
+      `;
+    }
+
+    // Slider Logic
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const dots = document.querySelectorAll('.slide-dot');
+    const totalSlides = slides.length;
+    let slideInterval = setInterval(nextSlide, 5000);
+
+    function updateSliderVisuals() {
+      slides.forEach((slide, index) => {
+        if (index === currentSlide) {
+          slide.classList.remove('opacity-0', 'z-0');
+          slide.classList.add('opacity-100', 'z-10');
+        } else {
+          slide.classList.remove('opacity-100', 'z-10');
+          slide.classList.add('opacity-0', 'z-0');
+        }
+      });
+
+      dots.forEach((dot, index) => {
+        if (index === currentSlide) {
+          dot.classList.remove('bg-slate-300', 'w-2');
+          dot.classList.add('bg-brandPink', 'w-8');
+        } else {
+          dot.classList.remove('bg-brandPink', 'w-8');
+          dot.classList.add('bg-slate-300', 'w-2');
+        }
       });
     }
 
-    // Lead Form submission logic
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        alert('بابت حسن اعتماد و ثبت درخواست شما متشکریم.\n\nدر حال حاضر سیستم ثبت خودکار فرم در حال به‌روزرسانی است. خواهشمندیم جهت هماهنگی سریع‌تر جلسه مشاوره اولیه، مستقیماً با شماره تلفن 09153387633 تماس حاصل فرمایید.');
-      });
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSliderVisuals();
+      resetInterval();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSliderVisuals();
+      resetInterval();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSliderVisuals();
+      resetInterval();
+    }
+
+    function resetInterval() {
+      clearInterval(slideInterval);
+      slideInterval = setInterval(nextSlide, 5000);
     }
   </script>
 </body>
