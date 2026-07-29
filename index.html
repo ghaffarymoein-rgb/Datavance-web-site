@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+updated_html = """<!DOCTYPE html>
 <html lang="fa" dir="rtl" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
@@ -7,467 +8,224 @@
 
   <!-- Tailwind via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Vazirmatn Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;400;700;900&display=swap" rel="stylesheet">
+  
   <script>
     tailwind.config = {
       theme: {
         extend: {
+          fontFamily: {
+            sans: ['Vazirmatn', 'ui-sans-serif', 'system-ui'],
+          },
           colors: {
-            ink: "#0b1220",
-            navy: "#0b2a3a",
-            brand: "#2f7cf6",
-            brand2: "#22c55e",
-            accent: "#f97316",
-            bg: "#0b1220",      // used for subtle gradients only
-            paper: "#f7f8fb",
-            card: "#ffffff",
-            border: "#e6e8ef"
+            brandPink: "#ef476f",
+            brandYellow: "#ffd166",
+            brandGreen: "#06d6a0",
+            brandBlue: "#118ab2",
+            brandDark: "#073b4c",
+            // Warmer Light Theme (Not pure white)
+            bgLight: "#faf9f6", 
+            cardLight: "#ffffff",
+            borderLight: "#e5e1da"
           },
           boxShadow: {
-            card: "0 10px 30px -12px rgba(11,18,32,.20)",
-            glow: "0 18px 45px -18px rgba(47,124,246,.45)"
+            card: "0 4px 20px -2px rgba(7, 59, 76, 0.05), 0 2px 8px -1px rgba(7, 59, 76, 0.02)",
+            hoverCard: "0 20px 25px -5px rgba(7, 59, 76, 0.1), 0 10px 10px -5px rgba(7, 59, 76, 0.04)"
           }
         }
       }
     };
   </script>
 
-  <!-- Persian font: Vazirmatn -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
   <style>
-    body { font-family: "Vazirmatn", system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 800ms cubic-bezier(0.16,1,0.3,1), transform 800ms cubic-bezier(0.16,1,0.3,1); }
-    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    body { font-family: 'Vazirmatn', sans-serif; }
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 
-<body class="bg-paper text-slate-700 antialiased selection:bg-brand/15 selection:text-ink">
-
-  <!-- Top accent -->
-  <div class="h-1.5 w-full bg-gradient-to-r from-brand via-accent to-brand2"></div>
+<body class="bg-bgLight text-slate-700 antialiased selection:bg-brandBlue/20 selection:text-brandDark">
+  
+  <!-- Accent Bar -->
+  <div class="h-1.5 w-full bg-gradient-to-r from-brandPink via-brandYellow to-brandGreen"></div>
 
   <!-- Header -->
-  <header class="sticky top-0 z-50 border-b border-border bg-white/85 backdrop-blur-md">
+  <header class="sticky top-0 z-50 border-b border-borderLight bg-white/90 backdrop-blur-md">
     <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
       <a href="#home" class="flex items-center gap-3">
-        <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-navy text-white font-extrabold text-lg shadow-sm">
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brandDark text-white font-black text-xl shadow-sm">
           d
         </span>
         <div class="leading-tight">
-          <div class="text-base font-extrabold tracking-tight text-navy">datavance</div>
-          <!-- FIX #8: subtitle -->
-          <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">data + advance</div>
+          <div class="text-lg font-black tracking-tight text-brandDark">datavance</div>
+          <div class="text-[11px] font-bold text-brandBlue uppercase tracking-[0.1em]">data + advance</div>
         </div>
       </a>
 
-      <button id="menuBtn" class="md:hidden rounded-lg border border-border bg-slate-50 px-3 py-2 text-sm text-navy font-semibold hover:bg-slate-100 transition">
-        منو
-      </button>
-
-      <div class="hidden md:flex gap-8 text-sm font-semibold text-slate-600">
-        <a href="#about" class="transition hover:text-brand">معرفی تیم</a>
-        <a href="#services" class="transition hover:text-brand">خدمات تخصصی</a>
-        <a href="#deliverables" class="transition hover:text-brand">خروجی‌های ما</a>
-        <a href="#projects" class="transition hover:text-brand">سوابق پروژه</a>
-        <a href="#contact" class="transition hover:text-brand">ارتباط با ما</a>
+      <div class="hidden md:flex gap-8 text-sm font-bold text-slate-600">
+        <a href="#about" class="transition hover:text-brandBlue">معرفی تیم</a>
+        <a href="#services" class="transition hover:text-brandBlue">خدمات تخصصی</a>
+        <a href="#projects" class="transition hover:text-brandBlue">سوابق پروژه</a>
+        <a href="#contact" class="transition hover:text-brandBlue">ارتباط با ما</a>
       </div>
+
+      <button id="menuBtn" class="md:hidden rounded-lg bg-slate-100 px-3 py-2 text-sm font-bold text-brandDark">منو</button>
     </nav>
-
-    <div id="mobileMenu" class="hidden md:hidden border-t border-border bg-white">
-      <div class="mx-auto max-w-6xl px-6 py-4 flex flex-col gap-4 text-sm font-semibold text-slate-600">
-        <a href="#about" class="hover:text-brand">معرفی تیم</a>
-        <a href="#services" class="hover:text-brand">خدمات تخصصی</a>
-        <a href="#deliverables" class="hover:text-brand">خروجی‌های ما</a>
-        <a href="#projects" class="hover:text-brand">سوابق پروژه</a>
-        <a href="#contact" class="hover:text-brand">ارتباط با ما</a>
-      </div>
-    </div>
   </header>
 
   <main id="home">
-    <!-- Hero (FIX #4: more color + gradient blobs) -->
-    <section class="relative overflow-hidden">
-      <div class="pointer-events-none absolute -top-32 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-gradient-to-br from-brand/25 via-accent/20 to-brand2/20 blur-3xl"></div>
-      <div class="pointer-events-none absolute -bottom-40 right-[-120px] h-[520px] w-[520px] rounded-full bg-gradient-to-br from-accent/18 via-brand/18 to-brand2/18 blur-3xl"></div>
-
-      <div class="mx-auto flex min-h-[82vh] max-w-6xl items-center px-6 py-12 md:py-20">
-        <div class="grid w-full gap-12 md:grid-cols-[1.15fr_0.85fr] md:items-center">
-
-          <div class="reveal">
-            <!-- FIX #9: tagline -->
-            <span class="inline-block mb-4 rounded-full bg-brand/10 px-4 py-1.5 text-xs font-bold tracking-wider text-brand uppercase">
-              سیستم‌سازی و بهینه‌سازی داده‌محور
-            </span>
-
-            <h1 class="text-4xl font-extrabold leading-[1.15] text-navy sm:text-5xl lg:text-6xl">
-              تصمیم‌سازی دقیق با داده، اجرا با سیستم
-            </h1>
-
-            <p class="mt-6 max-w-2xl text-base leading-8 text-slate-600">
-              تیم متخصصین <strong class="text-navy">datavance</strong> با تلفیق «مهندسی صنایع کاربردی»، «تحلیل داده» و «طراحی سیستم‌های مدیریتی»،
-              گلوگاه‌های عملیاتی را شناسایی کرده و راهکارهایی ارائه می‌دهد که قابل پیاده‌سازی، قابل سنجش و قابل پایش باشند.
-            </p>
-
-            <div class="mt-8 flex flex-wrap gap-4">
-              <a href="#deliverables"
-                 class="rounded-xl bg-navy px-6 py-3.5 text-sm font-extrabold text-white transition-all shadow-glow hover:-translate-y-0.5 hover:bg-navy/95">
-                خروجی‌های مورد انتظار
-              </a>
-              <a href="#services"
-                 class="rounded-xl border-2 border-navy/10 bg-white/70 px-6 py-3.5 text-sm font-bold text-navy transition hover:border-navy/25 hover:bg-white">
-                خدمات تخصصی
-              </a>
-            </div>
-
-            <div class="mt-12 flex flex-wrap items-center gap-3 text-xs font-semibold text-slate-500">
-              <span class="flex items-center gap-2">
-                <span class="h-2 w-2 rounded-full bg-brand"></span> شفافیت تصمیم‌گیری
-              </span>
-              <span class="flex items-center gap-2">
-                <span class="h-2 w-2 rounded-full bg-accent"></span> کاهش اتلاف و هزینه
-              </span>
-              <span class="flex items-center gap-2">
-                <span class="h-2 w-2 rounded-full bg-brand2"></span> پایش KPI و عملکرد
-              </span>
-            </div>
-          </div>
-
-          <!-- Info card -->
-          <div class="reveal">
-            <div class="rounded-3xl border border-border bg-white p-8 shadow-card">
-              <div class="flex items-start justify-between gap-3">
-                <div>
-                  <p class="text-xs font-bold text-slate-400 uppercase">تماس مستقیم</p>
-                  <p class="mt-2 text-2xl font-extrabold text-navy tracking-wide" dir="ltr">0915 338 7633</p>
-                </div>
-                <a href="tel:09153387633"
-                   class="rounded-xl bg-brand/10 p-3 text-brand transition hover:bg-brand hover:text-white">
-                  <svg xmlns="https://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                </a>
-              </div>
-
-              <div class="mt-8 space-y-4">
-                <div class="flex items-center gap-3">
-                  <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand2/12 text-brand2 font-extrabold">✓</div>
-                  <div>
-                    <h4 class="text-sm font-extrabold text-navy">رویکرد کاملاً اجرایی</h4>
-                    <p class="text-xs text-slate-500">خروجی‌ها قابل تحویل، قابل دفاع و قابل استقرار هستند.</p>
-                  </div>
-                </div>
-
-                <div class="flex items-center gap-3">
-                  <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/12 text-accent font-extrabold">⦿</div>
-                  <div>
-                    <h4 class="text-sm font-extrabold text-navy">تحلیل چندبعدی (فرآیند + داده)</h4>
-                    <p class="text-xs text-slate-500">از مسئله‌یابی تا طراحی راهکار و سنجش اثر.</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- FIX #7: address -->
-              <div class="mt-8 rounded-2xl border border-border bg-slate-50 p-4">
-                <p class="text-xs font-bold text-slate-400">کانال ارتباطی</p>
-                <p class="mt-1 text-sm font-bold text-navy">
-                  مشهد، ایران، پارک علم و فناوری فردوسی مشهد، تیم دیتاونس
-                </p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="border-y border-border bg-white py-20">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="reveal max-w-3xl">
-          <span class="text-xs font-extrabold uppercase tracking-wider text-accent">معرفی ما</span>
-          <h2 class="mt-3 text-3xl font-extrabold text-navy sm:text-4xl">داده‌محور، ساختاریافته، عمل‌گرا</h2>
-          <p class="mt-6 text-lg leading-8 text-slate-600">
-            در <strong class="text-navy">datavance</strong> داده‌ها را به «بینش» و بینش را به «اقدام» تبدیل می‌کنیم؛
-            با طراحی سیستم‌های مدیریتی، استانداردسازی فرآیندها و پایش KPI، کمک می‌کنیم تصمیم‌ها سریع‌تر، دقیق‌تر و کم‌ریسک‌تر شوند.
+    <!-- Hero Section -->
+    <section class="mx-auto flex min-h-[75vh] max-w-6xl items-center px-6 py-12">
+      <div class="grid w-full gap-12 md:grid-cols-[1.2fr_0.8fr] md:items-center">
+        <div class="reveal">
+          <span class="inline-block mb-4 rounded-full bg-brandBlue/10 px-4 py-1.5 text-xs font-bold text-brandBlue">
+            مهندسی صنایع و تحلیل هوشمند
+          </span>
+          <h1 class="text-4xl font-black leading-[1.3] text-brandDark sm:text-5xl lg:text-6xl">
+            سیستم‌سازی و بهینه‌سازی داده‌محور
+          </h1>
+          <p class="mt-6 max-w-xl text-lg leading-8 text-slate-500">
+            تیم متخصصین <strong class="text-brandDark">datavance</strong> با تلفیق دانش مهندسی صنایع و تحلیل داده، گلوگاه‌های ساختاری سازمان شما را شناسایی کرده و مسیر تصمیم‌گیری را شفاف می‌کنند.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="mx-auto max-w-6xl px-6 py-20">
-      <div class="reveal text-center">
-        <span class="text-xs font-extrabold uppercase tracking-wider text-brand">توانمندی‌ها</span>
-        <h2 class="mt-3 text-3xl font-extrabold text-navy">حوزه‌های خدمات تخصصی</h2>
-        <p class="mt-4 mx-auto max-w-2xl text-slate-600">سه بازوی کلیدی برای حل مسائل واقعی سازمان.</p>
-      </div>
-
-      <div class="mt-16 grid gap-8 md:grid-cols-3">
-        <article class="reveal rounded-3xl border border-border bg-white p-8 transition-all hover:-translate-y-1 hover:shadow-card">
-          <div class="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand/10 text-brand">
-            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#contact" class="rounded-xl bg-brandPink px-8 py-4 text-sm font-bold text-white shadow-lg hover:scale-105 transition-all">مشاوره رایگان</a>
+            <a href="#projects" class="rounded-xl border-2 border-brandDark/10 px-8 py-4 text-sm font-bold text-brandDark hover:bg-white transition-all">مشاهده پروژه‌ها</a>
           </div>
-          <h3 class="text-xl font-extrabold text-navy">سیستم‌سازی و تعالی فرآیندی</h3>
-          <p class="mt-3 text-sm leading-6 text-slate-600">کاهش اتلاف، افزایش بهره‌وری، استانداردسازی و ساختاردهی عملیات.</p>
-          <ul class="mt-6 space-y-2 text-xs text-slate-500">
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-accent"></span> برنامه‌ریزی تولید و بهینه‌سازی موجودی</li>
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-accent"></span> زمان‌سنجی و استانداردسازی کار</li>
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-accent"></span> مدل‌سازی و پایش فرآیندها</li>
-          </ul>
-        </article>
-
-        <article class="reveal rounded-3xl border border-border bg-white p-8 transition-all hover:-translate-y-1 hover:shadow-card">
-          <div class="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-accent/10 text-accent">
-            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-          </div>
-          <h3 class="text-xl font-extrabold text-navy">تحلیل مالی و امکان‌سنجی اقتصادی</h3>
-          <p class="mt-3 text-sm leading-6 text-slate-600">ارزیابی فنی-اقتصادی، تحلیل ریسک و تصمیم‌گیری سرمایه‌گذاری.</p>
-          <ul class="mt-6 space-y-2 text-xs text-slate-500">
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-brand"></span> تدوین طرح توجیهی و مدل مالی</li>
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-brand"></span> تحلیل سناریو و حساسیت</li>
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-brand"></span> نقشه راه رشد و توسعه کسب‌وکار</li>
-          </ul>
-        </article>
-
-        <article class="reveal rounded-3xl border border-border bg-white p-8 transition-all hover:-translate-y-1 hover:shadow-card">
-          <div class="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand2/10 text-brand2">
-            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-          </div>
-          <h3 class="text-xl font-extrabold text-navy">تحلیل داده و هوش تجاری</h3>
-          <p class="mt-3 text-sm leading-6 text-slate-600">ساخت داشبورد، گزارش‌دهی مدیریتی، و تبدیل داده به بینش قابل اقدام.</p>
-          <ul class="mt-6 space-y-2 text-xs text-slate-500">
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-accent"></span> KPI Dashboard و پایش عملکرد</li>
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-accent"></span> تحلیل توصیفی و ریشه‌یابی</li>
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-accent"></span> اتوماسیون گزارش‌های دوره‌ای</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <!-- Deliverables -->
-    <section id="deliverables" class="border-y border-border bg-white py-20">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="reveal text-center">
-          <span class="text-xs font-extrabold uppercase tracking-wider text-accent">ارزش‌آفرینی</span>
-          <h2 class="mt-3 text-3xl font-extrabold text-navy">خروجی‌های ملموس و مستندات تحویلی</h2>
-          <p class="mt-4 mx-auto max-w-2xl text-slate-600">در پایان پروژه، خروجی‌ها شفاف، قابل ارزیابی و قابل ارائه خواهند بود.</p>
         </div>
 
-        <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <div class="reveal flex gap-4 rounded-2xl border border-border bg-slate-50 p-6">
-            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand/12 text-brand text-lg">📊</span>
-            <div>
-              <h3 class="text-base font-extrabold text-navy">گزارش عارضه‌یابی و گلوگاه‌ها</h3>
-              <p class="mt-2 text-xs leading-5 text-slate-600">تحلیل عمیق فرآیندها و شناسایی نقاط اتلاف منابع.</p>
+        <div class="reveal">
+          <div class="rounded-3xl border border-borderLight bg-white p-8 shadow-card ring-1 ring-black/5">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">تماس مستقیم با واحد فنی</p>
+            <div class="flex items-center justify-between">
+              <span class="text-2xl font-black text-brandDark" dir="ltr">0915 338 7633</span>
+              <div class="rounded-full bg-brandGreen/20 p-2 text-brandGreen">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+              </div>
             </div>
-          </div>
-
-          <div class="reveal flex gap-4 rounded-2xl border border-border bg-slate-50 p-6">
-            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/12 text-accent text-lg">🖥️</span>
-            <div>
-              <h3 class="text-base font-extrabold text-navy">داشبوردهای مدیریتی</h3>
-              <p class="mt-2 text-xs leading-5 text-slate-600">پایش KPI و شاخص‌ها برای تصمیم‌گیری سریع‌تر.</p>
-            </div>
-          </div>
-
-          <div class="reveal flex gap-4 rounded-2xl border border-border bg-slate-50 p-6">
-            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand2/12 text-brand2 text-lg">📈</span>
-            <div>
-              <h3 class="text-base font-extrabold text-navy">گزارش تحلیل داده</h3>
-              <p class="mt-2 text-xs leading-5 text-slate-600">بینش‌های عملیاتی از داده‌های فروش/تولید/زنجیره تأمین.</p>
+            <div class="mt-8 space-y-4 border-t border-slate-50 pt-6">
+              <div class="flex items-center gap-3">
+                <div class="h-2 w-2 rounded-full bg-brandPink"></div>
+                <p class="text-sm font-bold text-slate-600">تصمیم‌گیری بر مبنای فکت و عدد</p>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="h-2 w-2 rounded-full bg-brandYellow"></div>
+                <p class="text-sm font-bold text-slate-600">کاهش هزینه‌های عملیاتی سازمان</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section id="projects" class="mx-auto max-w-6xl px-6 py-20">
-      <div class="reveal">
-        <span class="text-xs font-extrabold uppercase tracking-wider text-brand">سوابق همکاری</span>
-        <h2 class="mt-3 text-3xl font-extrabold text-navy">پروژه‌های شاخص اجرا شده</h2>
-        <p class="mt-4 max-w-2xl text-slate-600">
-          نمونه‌هایی از همکاری‌های انجام‌شده در حوزه‌های سیستم‌سازی، تحلیل داده و بهینه‌سازی:
-        </p>
+    <!-- Projects Section -->
+    <section id="projects" class="mx-auto max-w-6xl px-6 py-24">
+      <div class="reveal mb-12">
+        <span class="text-xs font-black uppercase text-brandPink">سوابق همکاری</span>
+        <h2 class="mt-2 text-3xl font-black text-brandDark">برخی از مهم‌ترین پروژه‌ها</h2>
       </div>
 
-      <div class="mt-12 grid gap-8 lg:grid-cols-[1.25fr_0.75fr]">
-        <div class="reveal rounded-3xl border border-border bg-white p-8 shadow-card">
-          <!-- FIX #2: title -->
-          <h3 class="text-lg font-extrabold text-navy mb-6 flex items-center gap-2">
-            <span class="inline-block h-2 w-2 rounded-full bg-accent"></span>
-            برخی از مهم‌ترین پروژه‌ها
-          </h3>
-
-          <ul class="space-y-4 text-sm text-slate-700">
-            <li class="flex items-start gap-3"><span class="font-extrabold text-brand">۰۱.</span><span>تحلیل داده‌ها و ساخت داشبورد اکسل و گزارش چندساله عملکرد فروش | <strong>پارت گوال</strong></span></li>
-            <li class="flex items-start gap-3"><span class="font-extrabold text-brand">۰۲.</span><span>تهیه و تدوین اسناد امکان‌سنجی اقتصادی و توسعه کسب‌وکار | <strong>سازمان آتش‌نشانی</strong></span></li>
-            <li class="flex items-start gap-3"><span class="font-extrabold text-brand">۰۳.</span><span>طراحی و بهینه‌سازی فرآیندهای زنجیره خرید و تأمین | <strong>صنایع بسته‌بندی آپادان پلاست</strong></span></li>
-            <li class="flex items-start gap-3"><span class="font-extrabold text-brand">۰۴.</span><span>طراحی، تحلیل و استخراج گزارش‌های آماری فصلی و سالانه | <strong>شرکت اینوستوران</strong></span></li>
-            <li class="flex items-start gap-3"><span class="font-extrabold text-brand">۰۵.</span><span>تحلیل داده، ممیزی و گزارش طبقه‌بندی مشاغل کارکنان | <strong>شرکت توزیع نیروی برق مشهد</strong></span></li>
-            <li class="flex items-start gap-3"><span class="font-extrabold text-brand">۰۶.</span><span>پیاده‌سازی پروژه‌های سیستم‌سازی، زمان‌سنجی و برنامه‌ریزی تولید | <strong>سامی پخش مشهد</strong></span></li>
-            <li class="flex items-start gap-3"><span class="font-extrabold text-brand">۰۷.</span><span>عارضه‌یابی و ساختاردهی به فرآیندهای عملیاتی کسب‌وکار | <strong>صنایع زمان فولاد شرق</strong></span></li>
-            <li class="flex items-start gap-3"><span class="font-extrabold text-brand">۰۸.</span><span>طراحی داشبوردهای پیشرفته پایش موجودی و فروش | <strong>شرکت پخش کیان کودک</strong></span></li>
-            <li class="flex items-start gap-3"><span class="font-extrabold text-brand">۰۹.</span><span>پیاده‌سازی سامانه تخصصی و مکانیزه انبارداری و چیدمان کالا | <strong>پارس ابزار قریشی</strong></span></li>
-
-            <!-- FIX #3: project 10 company changed -->
-            <li class="flex items-start gap-3"><span class="font-extrabold text-brand">۱۰.</span><span>مدیریت مالی، برنامه‌ریزی بودجه و تحلیل جریان‌های نقدینگی | <strong>اطلس پخش</strong></span></li>
+      <div class="grid gap-8 lg:grid-cols-[1.3fr_0.7fr]">
+        <div class="reveal rounded-3xl border border-borderLight bg-white p-8 shadow-card">
+          <ul class="space-y-4 text-sm font-medium text-slate-600">
+            <li class="flex items-start gap-3 border-b border-slate-50 pb-3">
+              <span class="font-bold text-brandBlue">۰۱.</span>
+              <span>تحلیل داده‌ها و ساخت داشبورد اکسل و گزارش عملکرد فروش | <strong>پارت گوال</strong></span>
+            </li>
+            <li class="flex items-start gap-3 border-b border-slate-50 pb-3">
+              <span class="font-bold text-brandBlue">۰۲.</span>
+              <span>تهیه و تدوین اسناد امکان‌سنجی اقتصادی و توسعه کسب‌وکار | <strong>سازمان آتش‌نشانی</strong></span>
+            </li>
+            <li class="flex items-start gap-3 border-b border-slate-50 pb-3">
+              <span class="font-bold text-brandBlue">۰۶.</span>
+              <span>پیاده‌سازی پروژه‌های سیستم‌سازی، زمان‌سنجی و برنامه‌ریزی تولید | <strong>بازرگانی اطلس پخش</strong></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="font-bold text-brandBlue">۱۰.</span>
+              <span>مدیریت مالی، برنامه‌ریزی بودجه و تحلیل جریان‌های نقدینگی | <strong>بازرگانی اطلس پخش</strong></span>
+            </li>
+            <li class="pt-2 text-xs text-slate-400 italic">و بیش از ۱۵ پروژه موفق دیگر در صنایع نفت، گاز و بسته‌بندی...</li>
           </ul>
         </div>
 
-        <div class="reveal flex flex-col justify-between rounded-3xl bg-gradient-to-br from-navy via-navy to-ink text-white p-8 shadow-card">
+        <div class="reveal rounded-3xl bg-brandDark text-white p-8 flex flex-col justify-between">
           <div>
-            <span class="text-xs font-extrabold uppercase tracking-wider text-brand2">سیاست محرمانگی اطلاعات</span>
-            <h3 class="mt-4 text-2xl font-extrabold">حفاظت از دارایی‌های اطلاعاتی</h3>
-            <p class="mt-4 text-sm leading-6 text-white/80">
-              داده‌ها و اطلاعات فرآیندی سازمان شما محرمانه هستند. ما متعهد به عدم افشا (NDA) بوده و نمونه‌مستندات فقط در جلسه حضوری/آنلاین ارائه می‌شود.
+            <h3 class="text-xl font-black text-brandYellow">محرمانگی اطلاعات</h3>
+            <p class="mt-4 text-sm leading-7 text-slate-300">
+              داده‌های شما دارایی شماست. در datavance تمامی پروژه‌ها تحت قرارداد عدم افشای اطلاعات (NDA) اجرا شده و امنیت داده‌های سازمانی اولویت اول ماست.
             </p>
           </div>
-
-          <!-- FIX #10: remove tools used -->
-          <div class="mt-8 pt-8 border-t border-white/10 flex items-center justify-between">
-            <div>
-              <p class="text-xs text-white/60">تعهد ما</p>
-              <p class="text-sm font-bold text-white mt-1">محرمانگی • شفافیت • خروجی قابل استقرار</p>
-            </div>
-            <span class="text-3xl">🔒</span>
+          <div class="mt-8 flex items-center justify-between border-t border-white/10 pt-6 text-2xl">
+            <span class="text-xs font-bold text-slate-400">Security First</span>
+            <span>🔒</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="border-t border-border bg-white py-20">
+    <!-- Contact Section -->
+    <section id="contact" class="bg-white border-y border-borderLight py-24">
       <div class="mx-auto max-w-6xl px-6">
-        <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-
+        <div class="grid gap-16 lg:grid-cols-2">
           <div class="reveal">
-            <span class="text-xs font-extrabold uppercase tracking-wider text-accent">شروع همکاری</span>
-            <h2 class="mt-3 text-3xl font-extrabold text-navy">با ما در ارتباط باشید</h2>
-            <p class="mt-6 text-base leading-7 text-slate-600">
-              برای هماهنگی جلسه مشاورهٔ اولیه و بررسی مسئله، مستقیم تماس بگیرید تا سریع‌تر زمان‌بندی انجام شود.
-            </p>
-
-            <div class="mt-8 space-y-4">
-              <div class="flex items-center gap-3">
-                <span class="text-lg">📞</span>
-                <span class="text-sm font-bold text-slate-700">شماره تماس: 09153387633</span>
+            <h2 class="text-3xl font-black text-brandDark">ارتباط با تیم دیتاونس</h2>
+            <p class="mt-6 text-lg text-slate-500">آماده‌ایم تا چالش‌های سیستماتیک سازمان شما را با ابزارهای مهندسی صنایع و تحلیل داده حل کنیم.</p>
+            
+            <div class="mt-10 space-y-6">
+              <div class="flex items-center gap-4">
+                <div class="bg-slate-100 p-3 rounded-xl text-xl">📍</div>
+                <div class="text-sm font-bold text-slate-600">مشهد، ایران، پارک علم و فناوری فردوسی مشهد، تیم دیتاونس</div>
               </div>
-              <div class="flex items-center gap-3">
-                <span class="text-lg">📍</span>
-                <!-- FIX #7 -->
-                <span class="text-sm font-bold text-slate-700">مشهد، ایران، پارک علم و فناوری فردوسی مشهد، تیم دیتاونس</span>
+              <div class="flex items-center gap-4">
+                <div class="bg-slate-100 p-3 rounded-xl text-xl">🔗</div>
+                <a href="https://www.linkedin.com/in/mostafa-fazeli/" target="_blank" class="text-sm font-bold text-brandBlue hover:underline">مشاهده پروفایل لینکدین</a>
               </div>
-            </div>
-
-            <div class="mt-8 flex gap-3">
-              <!-- FIX #5: LinkedIn exact, GitHub removed -->
-              <a href="https://www.linkedin.com/in/mostafa-fazeli/" target="_blank" rel="noopener"
-                 class="rounded-xl border border-border bg-slate-50 px-4 py-2 text-xs font-extrabold text-navy hover:bg-slate-100 transition">
-                LinkedIn
-              </a>
             </div>
           </div>
 
-          <!-- Lead Form -->
-          <div class="reveal rounded-3xl border border-border bg-slate-50 p-8 shadow-card">
-            <form id="contactForm" class="space-y-6">
-              <div class="grid gap-6 sm:grid-cols-2">
-                <div>
-                  <label for="name" class="block text-xs font-extrabold text-navy mb-2 uppercase">نام و نام خانوادگی</label>
-                  <input id="name" type="text" placeholder="مثال: علیرضا محمدی" required
-                         class="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20" />
-                </div>
-                <div>
-                  <label for="phone" class="block text-xs font-extrabold text-navy mb-2 uppercase">شماره تماس</label>
-                  <input id="phone" type="tel" placeholder="مثال: 09123456789" required
-                         class="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20" />
-                </div>
-              </div>
-
-              <div>
-                <label for="organization" class="block text-xs font-extrabold text-navy mb-2 uppercase">نام سازمان / شرکت</label>
-                <input id="organization" type="text" placeholder="مثال: زمان فولاد شرق"
-                       class="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20" />
-              </div>
-
-              <div>
-                <label for="desc" class="block text-xs font-extrabold text-navy mb-2 uppercase">توضیح مختصر نیاز سازمان یا چالش فعلی</label>
-                <textarea id="desc" rows="4" placeholder="چالش/نیاز را کوتاه بنویسید تا جلسه هدفمندتر باشد..."
-                          class="w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20"></textarea>
-              </div>
-
-              <!-- FIX #6: submit + notification (no fake success) -->
-              <button type="submit"
-                      class="w-full rounded-xl bg-brand px-6 py-4 text-sm font-extrabold text-white shadow-glow hover:bg-brand/95 transition">
-                درخواست جلسه مشاوره اولیه
-              </button>
-
-              <!-- Notification box -->
-              <div id="formNotice" class="hidden rounded-2xl border border-border bg-white p-4">
-                <p class="text-sm font-extrabold text-navy">اطلاع‌رسانی</p>
-                <p id="formNoticeText" class="mt-2 text-xs leading-6 text-slate-600"></p>
-              </div>
+          <div class="reveal rounded-3xl border border-borderLight bg-bgLight p-8">
+            <form id="contactForm" class="space-y-4">
+              <input type="text" placeholder="نام و نام خانوادگی" class="w-full rounded-xl border border-borderLight p-4 text-sm outline-none focus:ring-2 focus:ring-brandBlue/20" required>
+              <input type="tel" placeholder="شماره تماس" class="w-full rounded-xl border border-borderLight p-4 text-sm outline-none focus:ring-2 focus:ring-brandBlue/20" required>
+              <textarea placeholder="توضیح مختصر چالش سازمان شما..." rows="4" class="w-full rounded-xl border border-borderLight p-4 text-sm outline-none focus:ring-2 focus:ring-brandBlue/20"></textarea>
+              <button type="submit" class="w-full rounded-xl bg-brandPink py-4 text-sm font-black text-white shadow-md hover:bg-brandPink/90">درخواست جلسه مشاوره اولیه</button>
             </form>
           </div>
-
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="border-t border-border bg-white py-10">
-    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 text-sm text-slate-500 md:flex-row">
-      <div class="flex items-center gap-3">
-        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-navy text-white font-extrabold text-sm">d</span>
-        <span class="font-extrabold text-navy">datavance</span>
-      </div>
-      <p class="text-xs">© 2026 datavance. تمامی حقوق مادی و معنوی محفوظ است.</p>
-      <div class="flex gap-4 text-xs font-bold">
-        <a href="#about" class="hover:text-navy">درباره ما</a>
-        <span>•</span>
-        <a href="#services" class="hover:text-navy">خدمات</a>
-      </div>
-    </div>
+  <footer class="py-12 bg-bgLight text-center text-xs font-bold text-slate-400">
+    <p>© 2024 datavance | مشهد، پارک علم و فناوری فردوسی</p>
   </footer>
 
   <script>
-    // Reveal animation
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('is-visible');
-      });
-    }, { threshold: 0.1, rootMargin: "0px 0px -60px 0px" });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    // Reveal animation logic
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Mobile menu
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-    mobileMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
-
-    // FIX #6: form is currently inactive -> show notification (no submit)
-    const form = document.getElementById('contactForm');
-    const notice = document.getElementById('formNotice');
-    const noticeText = document.getElementById('formNoticeText');
-
-    form?.addEventListener('submit', (e) => {
+    // Form logic as requested
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
-
-      const msg = "در حال حاضر سیستم ثبت پیام از طریق فرم فعال نیست. " +
-                  "برای هماهنگی جلسه مشاوره اولیه، لطفاً مستقیماً با شماره درج‌شده تماس بگیرید " +
-                  "یا از طریق لینکدین پیام بدهید. سپاس از همراهی شما.";
-
-      noticeText.textContent = msg;
-      notice.classList.remove('hidden');
-
-      // optional: scroll to notice smoothly
-      notice.scrollIntoView({ behavior: "smooth", block: "center" });
+      alert("بابت حسن اعتماد شما متشکریم.\\n\\nدر حال حاضر سیستم ثبت خودکار پیام غیرفعال است. لطفاً جهت هماهنگی جلسه مشاوره مستقیماً با شماره 09153387633 تماس حاصل فرمایید.");
     });
   </script>
-
 </body>
-</html>
+</html>"""
+
+# Saving the updated file
+file_path = "[/mnt/data/index.html"](https://storage.gapgpt.app/media/code_interpreter/76bb33c5-8705-4d71-b309-59d554573fa8/index.html%22)
+with open(file_path, "w", encoding="utf-8") as f:
+    f.write(updated_html)
+
+print(f"File saved to: {file_path}")
