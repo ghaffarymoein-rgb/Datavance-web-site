@@ -65,13 +65,8 @@
   <header class="sticky top-0 z-50 border-b border-borderLight bg-white/80 backdrop-blur-md">
     <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
       <a href="#home" class="flex items-center gap-3">
-        <!-- Logo Image Integration -->
-        <img
-          src="logo.png"
-          alt="datavance logo"
-          class="h-9 w-9 rounded-xl object-contain bg-white shadow-sm border border-borderLight"
-          onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,' + encodeURIComponent('<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\' fill=\'#073b4c\'><rect width=\'100\' height=\'100\' rx=\'20\'/><text x=\'50\' y=\'65\' font-size=\'45\' font-weight=\'bold\' fill=\'white\' text-anchor=\'middle\' font-family=\'sans-serif\'>d</text></svg>');"
-        />
+        <!-- Main Logo Integration -->
+        <img src="image/logo.png" alt="datavance Logo" class="h-9 w-auto object-contain" onerror="this.onerror=null; this.outerHTML='<span class=\'inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brandDark text-white font-bold text-lg shadow-sm\'>d</span>';" />
         <div class="leading-tight">
           <div class="text-base font-bold tracking-tight text-brandDark">datavance</div>
           <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">data + advance</div>
@@ -180,88 +175,52 @@
       </div>
     </section>
 
-    <!-- NEW SECTION: Image Slider (16:9) -->
-    <section id="gallery" class="mx-auto max-w-6xl px-6 pb-20">
-      <div class="reveal">
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-          <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-brandGreen">گالری و خروجی‌ها</span>
-            <h2 class="mt-3 text-2xl sm:text-3xl font-extrabold text-brandDark">نمای کلی از مستندات و داشبوردها</h2>
-            <p class="mt-2 text-sm text-slate-500 max-w-2xl">
-              در این بخش نمایی از پروژه‌ها، ساختارهای مستندسازی و خروجی‌های بهینه‌سازی را مشاهده می‌کنید.
-            </p>
+    <!-- New 16:9 Image Slider Section (with error handling) -->
+    <section class="mx-auto max-w-6xl px-6 pb-20 reveal">
+      <div class="relative w-full overflow-hidden rounded-3xl border border-borderLight bg-white shadow-card">
+        <!-- Slider Container with 16:9 Aspect Ratio -->
+        <div class="relative w-full aspect-[16/9] md:aspect-[16/9]">
+          
+          <!-- Slide 1 -->
+          <div class="slide-item absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100 z-10">
+            <img src="image/picture_1.png" alt="پروژه اول دیتاونس" class="w-full h-full object-cover" 
+                 onerror="handleImageError(this, 'تصویر شماره ۱ بارگذاری نشد');" />
           </div>
-          <!-- Desktop Controls -->
-          <div class="hidden md:flex items-center gap-2" dir="ltr">
-            <button type="button" id="sliderPrev" class="rounded-xl border border-borderLight bg-white px-4 py-2 text-xs font-bold text-brandDark hover:bg-slate-50 transition">
-              &larr; قبلی
-            </button>
-            <button type="button" id="sliderNext" class="rounded-xl bg-brandDark px-4 py-2 text-xs font-bold text-white hover:bg-brandDark/90 transition">
-              بعدی &rarr;
-            </button>
+
+          <!-- Slide 2 -->
+          <div class="slide-item absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0">
+            <img src="image/picture_2.png" alt="پروژه دوم دیتاونس" class="w-full h-full object-cover" 
+                 onerror="handleImageError(this, 'تصویر شماره ۲ بارگذاری نشد');" />
           </div>
+
+          <!-- Slide 3 -->
+          <div class="slide-item absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0">
+            <img src="image/picture_3.png" alt="پروژه سوم دیتاونس" class="w-full h-full object-cover" 
+                 onerror="handleImageError(this, 'تصویر شماره ۳ بارگذاری نشد');" />
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="slide-item absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0">
+            <img src="image/picture_4.png" alt="پروژه چهارم دیتاونس" class="w-full h-full object-cover" 
+                 onerror="handleImageError(this, 'تصویر شماره ۴ بارگذاری نشد');" />
+          </div>
+
         </div>
 
-        <div class="mt-8 rounded-3xl border border-borderLight bg-white shadow-card overflow-hidden">
-          <div class="relative w-full overflow-hidden bg-slate-900/5" style="aspect-ratio: 16 / 9;">
-            <!-- Track -->
-            <div id="sliderTrack" class="absolute inset-0 flex transition-transform duration-500 ease-out">
-              <!-- Slide 1 -->
-              <div class="relative h-full w-full shrink-0">
-                <img data-src="image/picture_1.png" alt="Slide 1" class="h-full w-full object-cover" />
-                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6 text-white">
-                  <p class="text-sm font-semibold">داشبورد پایش عملکرد عملیاتی و عارضه‌یابی</p>
-                </div>
-              </div>
-              <!-- Slide 2 -->
-              <div class="relative h-full w-full shrink-0">
-                <img data-src="image/picture_2.png" alt="Slide 2" class="h-full w-full object-cover" />
-                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6 text-white">
-                  <p class="text-sm font-semibold">تحلیل امکان‌سنجی اقتصادی و مالی طرح‌ها</p>
-                </div>
-              </div>
-              <!-- Slide 3 -->
-              <div class="relative h-full w-full shrink-0">
-                <img data-src="image/picture_3.png" alt="Slide 3" class="h-full w-full object-cover" />
-                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6 text-white">
-                  <p class="text-sm font-semibold">شبیه‌سازی فرآیندهای لجستیک و زنجیره تأمین</p>
-                </div>
-              </div>
-              <!-- Slide 4 -->
-              <div class="relative h-full w-full shrink-0">
-                <img data-src="image/picture_4.png" alt="Slide 4" class="h-full w-full object-cover" />
-                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6 text-white">
-                  <p class="text-sm font-semibold">استانداردسازی و تدوین نقشه‌های تعاملی سازمان</p>
-                </div>
-              </div>
-            </div>
+        <!-- Slider Controls (Prev/Next) -->
+        <button onclick="prevSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-brandDark backdrop-blur-sm border border-borderLight shadow-sm transition hover:bg-white hover:scale-105 active:scale-95" aria-label="تصویر قبلی">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+        <button onclick="nextSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-brandDark backdrop-blur-sm border border-borderLight shadow-sm transition hover:bg-white hover:scale-105 active:scale-95" aria-label="تصویر بعدی">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
 
-            <!-- Dots Controls -->
-            <div class="absolute bottom-4 right-4 flex items-center gap-2 z-10">
-              <button type="button" class="sliderDot h-2.5 w-2.5 rounded-full bg-white/60 hover:bg-white transition" data-index="0"></button>
-              <button type="button" class="sliderDot h-2.5 w-2.5 rounded-full bg-white/60 hover:bg-white transition" data-index="1"></button>
-              <button type="button" class="sliderDot h-2.5 w-2.5 rounded-full bg-white/60 hover:bg-white transition" data-index="2"></button>
-              <button type="button" class="sliderDot h-2.5 w-2.5 rounded-full bg-white/60 hover:bg-white transition" data-index="3"></button>
-            </div>
-
-            <!-- Error Banner (Hidden by default) -->
-            <div id="sliderError" class="hidden absolute top-4 left-4 right-4 rounded-xl border border-brandPink/20 bg-white/95 backdrop-blur-sm p-3 shadow-md z-20">
-              <div class="flex items-center gap-2 text-xs text-slate-700">
-                <span class="font-bold text-brandPink">⚠️ خطا در بارگذاری فایل:</span>
-                <span id="sliderErrorMsg"></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Mobile Controls Panel -->
-          <div class="md:hidden flex items-center justify-between p-4 border-t border-borderLight bg-slate-50" dir="ltr">
-            <button type="button" id="sliderPrevMobile" class="w-1/2 rounded-xl border border-borderLight bg-white py-3 text-xs font-semibold text-brandDark hover:bg-slate-100 transition mr-2">
-              &larr; قبلی
-            </button>
-            <button type="button" id="sliderNextMobile" class="w-1/2 rounded-xl bg-brandDark py-3 text-xs font-semibold text-white hover:bg-brandDark/90 transition">
-              بعدی &rarr;
-            </button>
-          </div>
+        <!-- Slider Dots/Indicators -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          <button onclick="goToSlide(0)" class="slide-dot h-2 w-8 rounded-full bg-brandPink transition-all" aria-label="اسلاید ۱"></button>
+          <button onclick="goToSlide(1)" class="slide-dot h-2 w-2 rounded-full bg-slate-300 transition-all" aria-label="اسلاید ۲"></button>
+          <button onclick="goToSlide(2)" class="slide-dot h-2 w-2 rounded-full bg-slate-300 transition-all" aria-label="اسلاید ۳"></button>
+          <button onclick="goToSlide(3)" class="slide-dot h-2 w-2 rounded-full bg-slate-300 transition-all" aria-label="اسلاید ۴"></button>
         </div>
       </div>
     </section>
@@ -573,136 +532,106 @@
 
   <!-- Footer -->
   <footer class="border-t border-borderLight bg-slate-50 py-12">
-    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 sm:flex-row">
-      <div class="text-center sm:text-right">
-        <p class="text-sm font-bold text-brandDark">datavance</p>
-        <p class="mt-1 text-xs text-slate-400">پیاده‌سازی فرآیندهای نوین مهندسی صنایع و راهکارهای جامع هوش تجاری</p>
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
+      <div class="flex items-center gap-3">
+        <img src="image/logo.png" alt="datavance Logo" class="h-8 w-auto object-contain" onerror="this.onerror=null; this.outerHTML='<span class=\'inline-flex h-8 w-8 items-center justify-center rounded-xl bg-brandDark text-white font-bold text-base shadow-sm\'>d</span>';" />
+        <span class="text-sm font-bold text-brandDark">datavance</span>
       </div>
-      <p class="text-xs text-slate-400">
-        &copy; 2026 datavance. تمامی حقوق محفوظ است.
+      <p class="text-xs text-slate-400 text-center md:text-right">
+        کلیه حقوق مادی و معنوی متعلق به تیم مهندسی صنایع و تحلیل داده datavance می‌باشد.
       </p>
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Scripts for Mobile Menu, Scroll Reveal & Slider logic -->
   <script>
-    // --- Mobile Menu Toggle ---
+    // Mobile Menu Toggle
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Simple Scroll Reveal implementation
+    const revealElements = document.querySelectorAll('.reveal');
+    const checkReveal = () => {
+      const triggerBottom = window.innerHeight * 0.9;
+      revealElements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < triggerBottom) {
+          el.classList.add('is-visible');
+        }
       });
-      // Close menu on link click
-      mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-        });
+    };
+    window.addEventListener('scroll', checkReveal);
+    window.addEventListener('load', checkReveal);
+
+    // Image Error Handler Function (Fallback Layout)
+    function handleImageError(image, errorMessage) {
+      image.onerror = null; // Prevent infinite loops
+      const container = image.parentElement;
+      container.innerHTML = `
+        <div class="flex flex-col items-center justify-center w-full h-full bg-slate-100 border border-dashed border-borderLight text-slate-400 p-6">
+          <svg class="w-12 h-12 mb-3 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <span class="text-xs font-semibold tracking-wide">${errorMessage}</span>
+          <span class="text-[10px] text-slate-400 mt-1">لطفاً مسیر تصویر را در پوشه image بررسی کنید</span>
+        </div>
+      `;
+    }
+
+    // Slider Logic
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide-item');
+    const dots = document.querySelectorAll('.slide-dot');
+    const totalSlides = slides.length;
+    let slideInterval = setInterval(nextSlide, 5000);
+
+    function updateSliderVisuals() {
+      slides.forEach((slide, index) => {
+        if (index === currentSlide) {
+          slide.classList.remove('opacity-0', 'z-0');
+          slide.classList.add('opacity-100', 'z-10');
+        } else {
+          slide.classList.remove('opacity-100', 'z-10');
+          slide.classList.add('opacity-0', 'z-0');
+        }
+      });
+
+      dots.forEach((dot, index) => {
+        if (index === currentSlide) {
+          dot.classList.remove('bg-slate-300', 'w-2');
+          dot.classList.add('bg-brandPink', 'w-8');
+        } else {
+          dot.classList.remove('bg-brandPink', 'w-8');
+          dot.classList.add('bg-slate-300', 'w-2');
+        }
       });
     }
 
-    // --- Intersection Observer for reveals ---
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
-      });
-    }, { threshold: 0.1 });
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSliderVisuals();
+      resetInterval();
+    }
 
-    reveals.forEach(el => observer.observe(el));
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSliderVisuals();
+      resetInterval();
+    }
 
-    // --- Gallery Slider Controller & Error Handling ---
-    (function () {
-      const track = document.getElementById('sliderTrack');
-      if (!track) return;
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSliderVisuals();
+      resetInterval();
+    }
 
-      const slides = Array.from(track.children);
-      const dots = Array.from(document.querySelectorAll('.sliderDot'));
-      const errorBanner = document.getElementById('sliderError');
-      const errorMsg = document.getElementById('sliderErrorMsg');
-
-      const btnPrev = document.getElementById('sliderPrev');
-      const btnNext = document.getElementById('sliderNext');
-      const btnPrevM = document.getElementById('sliderPrevMobile');
-      const btnNextM = document.getElementById('sliderNextMobile');
-
-      let currentIndex = 0;
-      let errorTimeout;
-
-      function updateActiveDot(idx) {
-        dots.forEach((dot, dIdx) => {
-          if (dIdx === idx) {
-            dot.classList.remove('bg-white/60');
-            dot.classList.add('bg-white');
-          } else {
-            dot.classList.remove('bg-white');
-            dot.classList.add('bg-white/60');
-          }
-        });
-      }
-
-      function slideTo(idx) {
-        currentIndex = (idx + slides.length) % slides.length;
-        track.style.transform = `translateX(${currentIndex * 100}%)`;
-        updateActiveDot(currentIndex);
-      }
-
-      function displayLoadError(fileName) {
-        if (!errorBanner || !errorMsg) return;
-        errorMsg.textContent = `بارگذاری فایل "${fileName}" در مسیر تعریف شده انجام نشد.`;
-        errorBanner.classList.remove('hidden');
-
-        clearTimeout(errorTimeout);
-        errorTimeout = setTimeout(() => {
-          errorBanner.classList.add('hidden');
-        }, 5000);
-      }
-
-      // Pre-load images & handle errors gracefully
-      const images = track.querySelectorAll('img[data-src]');
-      images.forEach((img) => {
-        const sourceUrl = img.getAttribute('data-src');
-        img.setAttribute('src', sourceUrl);
-
-        img.addEventListener('error', function () {
-          // Inline dynamic SVG fallback pattern
-          const fallbackSvg = 
-            "data:image/svg+xml;charset=utf-8," +
-            encodeURIComponent(
-              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
-                <rect width="100%" height="100%" fill="#f1f5f9"/>
-                <rect x="40" y="40" width="1520" height="820" rx="24" fill="none" stroke="#ef476f" stroke-width="4" stroke-dasharray="16 12"/>
-                <g fill="#073b4c" font-family="system-ui, sans-serif" font-weight="bold">
-                  <text x="50%" y="45%" font-size="48" text-anchor="middle">تصویر بارگذاری نشد</text>
-                  <text x="50%" y="55%" font-size="28" fill="#64748b" text-anchor="middle">${sourceUrl}</text>
-                </g>
-              </svg>`
-            );
-          
-          img.src = fallbackSvg;
-          img.classList.add('object-contain');
-          displayLoadError(sourceUrl);
-        });
-      });
-
-      // Actions bindings
-      if (btnPrev) btnPrev.addEventListener('click', () => slideTo(currentIndex - 1));
-      if (btnNext) btnNext.addEventListener('click', () => slideTo(currentIndex + 1));
-      if (btnPrevM) btnPrevM.addEventListener('click', () => slideTo(currentIndex - 1));
-      if (btnNextM) btnNextM.addEventListener('click', () => slideTo(currentIndex + 1));
-
-      dots.forEach((dot) => {
-        dot.addEventListener('click', () => {
-          const idx = parseInt(dot.getAttribute('data-index') || '0', 10);
-          slideTo(idx);
-        });
-      });
-
-      // Init
-      slideTo(0);
-    })();
+    function resetInterval() {
+      clearInterval(slideInterval);
+      slideInterval = setInterval(nextSlide, 5000);
+    }
   </script>
 </body>
 </html>
