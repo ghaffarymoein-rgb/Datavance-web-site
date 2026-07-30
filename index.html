@@ -8,6 +8,7 @@
   <link rel="icon" type="image/png" href="image/Icon.png" sizes="32x32">
   <link rel="icon" type="image/png" href="image/Icon.png" sizes="16x16">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;400;700;900&display=swap" rel="stylesheet">
 
   <script>
@@ -56,6 +57,12 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+  .active-tab {
+    background: #073b4c !important;
+    color: white !important;
+  }
+
 
     .animated-gradient {
       background-size: 200% 200%;
@@ -626,6 +633,194 @@
         </div>
       </div>
     </section>
+    <section id="dashboard" class="mx-auto max-w-6xl px-6 py-20">
+  <div class="reveal text-center">
+    <span class="text-xs font-bold uppercase tracking-wider text-brandBlue">
+      داشبورد تعاملی
+    </span>
+    <h2 class="mt-3 text-3xl font-extrabold text-brandDark">
+      تحلیل فروش و رصد تولید
+    </h2>
+    <p class="mt-4 mx-auto max-w-2xl text-slate-500">
+      یک نمونه داشبورد پویا با تب‌های مجزا، KPI های تعاملی، نمودار داینامیک و فیلتر زمانی.
+    </p>
+  </div>
+
+  <div class="reveal mt-10 rounded-3xl border border-borderLight bg-white p-4 shadow-card md:p-6">
+    <!-- Tabs -->
+    <div class="flex flex-wrap gap-2 border-b border-borderLight pb-4">
+      <button
+        type="button"
+        class="dashboard-tab active-tab rounded-xl bg-brandDark px-4 py-2 text-sm font-bold text-white transition hover:bg-brandDark/90"
+        data-tab="sales">
+        فروش
+      </button>
+      <button
+        type="button"
+        class="dashboard-tab rounded-xl bg-slate-100 px-4 py-2 text-sm font-bold text-brandDark transition hover:bg-slate-200"
+        data-tab="production">
+        رصد تولید
+      </button>
+
+      <div class="ms-auto">
+        <select
+          id="dashboardFilter"
+          class="rounded-xl border border-borderLight bg-white px-4 py-2 text-sm font-bold text-brandDark outline-none transition focus:border-brandBlue">
+          <option value="7">۷ روز اخیر</option>
+          <option value="30" selected>۳۰ روز اخیر</option>
+          <option value="90">۹۰ روز اخیر</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Panels -->
+    <div class="mt-6">
+      <!-- Sales Panel -->
+      <div id="panel-sales" class="dashboard-panel">
+        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+            <p class="text-sm font-bold text-slate-500">فروش کل</p>
+            <div class="mt-3 flex items-end justify-between gap-3">
+              <span id="salesTotal" class="text-3xl font-extrabold text-brandDark">0</span>
+              <span class="rounded-full bg-brandGreen/10 px-3 py-1 text-xs font-bold text-brandGreen">+12.4%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500">تومان</p>
+          </article>
+
+          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+            <p class="text-sm font-bold text-slate-500">تعداد سفارش</p>
+            <div class="mt-3 flex items-end justify-between gap-3">
+              <span id="salesOrders" class="text-3xl font-extrabold text-brandDark">0</span>
+              <span class="rounded-full bg-brandBlue/10 px-3 py-1 text-xs font-bold text-brandBlue">+8.1%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500">عدد</p>
+          </article>
+
+          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+            <p class="text-sm font-bold text-slate-500">نرخ تبدیل</p>
+            <div class="mt-3 flex items-end justify-between gap-3">
+              <span id="salesConversion" class="text-3xl font-extrabold text-brandDark">0%</span>
+              <span class="rounded-full bg-brandYellow/20 px-3 py-1 text-xs font-bold text-brandDark">+2.3%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500">از بازدید به خرید</p>
+          </article>
+
+          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+            <p class="text-sm font-bold text-slate-500">سبد متوسط</p>
+            <div class="mt-3 flex items-end justify-between gap-3">
+              <span id="salesAOV" class="text-3xl font-extrabold text-brandDark">0</span>
+              <span class="rounded-full bg-brandPink/10 px-3 py-1 text-xs font-bold text-brandPink">+5.7%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500">تومان</p>
+          </article>
+        </div>
+
+        <div class="mt-6 grid gap-6 lg:grid-cols-3">
+          <div class="lg:col-span-2 rounded-2xl border border-borderLight bg-white p-4 shadow-card">
+            <div class="mb-4 flex items-center justify-between gap-3">
+              <h3 class="text-lg font-extrabold text-brandDark">روند فروش</h3>
+              <span class="text-xs font-bold text-slate-500">داینامیک با hover</span>
+            </div>
+            <div class="h-[320px]">
+              <canvas id="dashboardChart"></canvas>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-borderLight bg-white p-4 shadow-card">
+            <h3 class="text-lg font-extrabold text-brandDark">سهم فروش</h3>
+            <div class="mt-4 h-[320px]">
+              <canvas id="salesPie"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Production Panel -->
+      <div id="panel-production" class="dashboard-panel hidden">
+        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+            <p class="text-sm font-bold text-slate-500">تولید امروز</p>
+            <div class="mt-3 flex items-end justify-between gap-3">
+              <span id="prodToday" class="text-3xl font-extrabold text-brandDark">0</span>
+              <span class="rounded-full bg-brandGreen/10 px-3 py-1 text-xs font-bold text-brandGreen">+9.2%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500">واحد</p>
+          </article>
+
+          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+            <p class="text-sm font-bold text-slate-500">نرخ ضایعات</p>
+            <div class="mt-3 flex items-end justify-between gap-3">
+              <span id="prodWaste" class="text-3xl font-extrabold text-brandDark">0%</span>
+              <span class="rounded-full bg-brandPink/10 px-3 py-1 text-xs font-bold text-brandPink">-1.1%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500">کیفیت خط</p>
+          </article>
+
+          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+            <p class="text-sm font-bold text-slate-500">بهره‌وری</p>
+            <div class="mt-3 flex items-end justify-between gap-3">
+              <span id="prodEfficiency" class="text-3xl font-extrabold text-brandDark">0%</span>
+              <span class="rounded-full bg-brandBlue/10 px-3 py-1 text-xs font-bold text-brandBlue">+3.4%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500">OEE تقریبی</p>
+          </article>
+
+          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+            <p class="text-sm font-bold text-slate-500">سفارش معوق</p>
+            <div class="mt-3 flex items-end justify-between gap-3">
+              <span id="prodBacklog" class="text-3xl font-extrabold text-brandDark">0</span>
+              <span class="rounded-full bg-brandYellow/20 px-3 py-1 text-xs font-bold text-brandDark">-4.8%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500">در صف تولید</p>
+          </article>
+        </div>
+
+        <div class="mt-6 grid gap-6 lg:grid-cols-3">
+          <div class="lg:col-span-2 rounded-2xl border border-borderLight bg-white p-4 shadow-card">
+            <div class="mb-4 flex items-center justify-between gap-3">
+              <h3 class="text-lg font-extrabold text-brandDark">روند تولید</h3>
+              <span class="text-xs font-bold text-slate-500">شفت‌ها و خروجی روزانه</span>
+            </div>
+            <div class="h-[320px]">
+              <canvas id="productionChart"></canvas>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-borderLight bg-white p-4 shadow-card">
+            <h3 class="text-lg font-extrabold text-brandDark">وضعیت خطوط</h3>
+            <div class="mt-4 space-y-4">
+              <div>
+                <div class="mb-2 flex justify-between text-sm font-bold text-slate-500">
+                  <span>خط 1</span><span>82%</span>
+                </div>
+                <div class="h-3 w-full overflow-hidden rounded-full bg-slate-100">
+                  <div class="h-full w-[82%] rounded-full bg-brandGreen"></div>
+                </div>
+              </div>
+              <div>
+                <div class="mb-2 flex justify-between text-sm font-bold text-slate-500">
+                  <span>خط 2</span><span>67%</span>
+                </div>
+                <div class="h-3 w-full overflow-hidden rounded-full bg-slate-100">
+                  <div class="h-full w-[67%] rounded-full bg-brandBlue"></div>
+                </div>
+              </div>
+              <div>
+                <div class="mb-2 flex justify-between text-sm font-bold text-slate-500">
+                  <span>خط 3</span><span>91%</span>
+                </div>
+                <div class="h-3 w-full overflow-hidden rounded-full bg-slate-100">
+                  <div class="h-full w-[91%] rounded-full bg-brandPink"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
     <section id="contact" class="border-t border-borderLight bg-white py-20">
       <div class="mx-auto max-w-6xl px-6">
         <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
@@ -866,5 +1061,221 @@
       restartAutoPlay();
     })();
   </script>
+  <script>
+  (function () {
+    let salesChart, salesPie, productionChart;
+
+    const salesDataMap = {
+      7: {
+        labels: ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'],
+        sales: [12, 18, 14, 22, 19, 27, 24],
+        production: [80, 85, 78, 92, 88, 95, 90]
+      },
+      30: {
+        labels: ['هفته 1', 'هفته 2', 'هفته 3', 'هفته 4'],
+        sales: [72, 98, 86, 120],
+        production: [320, 355, 340, 390]
+      },
+      90: {
+        labels: ['ماه 1', 'ماه 2', 'ماه 3'],
+        sales: [260, 310, 355],
+        production: [1100, 1250, 1380]
+      }
+    };
+
+    function animateNumber(el, target, suffix = '') {
+      const duration = 800;
+      const start = 0;
+      const startTime = performance.now();
+
+      function step(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const value = Math.floor(start + (target - start) * progress);
+        el.textContent = value.toLocaleString('fa-IR') + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    function initSalesChart(labels, data) {
+      const ctx = document.getElementById('dashboardChart').getContext('2d');
+      if (salesChart) salesChart.destroy();
+
+      salesChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label: 'فروش',
+            data,
+            borderColor: '#118ab2',
+            backgroundColor: 'rgba(17, 138, 178, 0.12)',
+            fill: true,
+            tension: 0.35,
+            pointRadius: 5,
+            pointHoverRadius: 8,
+            pointBackgroundColor: '#073b4c'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false
+          },
+          plugins: {
+            legend: {
+              labels: {
+                font: {
+                  family: 'Vazirmatn'
+                }
+              }
+            },
+            tooltip: {
+              rtl: true,
+              titleFont: { family: 'Vazirmatn' },
+              bodyFont: { family: 'Vazirmatn' }
+            }
+          },
+          scales: {
+            x: {
+              ticks: { font: { family: 'Vazirmatn' } }
+            },
+            y: {
+              ticks: { font: { family: 'Vazirmatn' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initProductionChart(labels, data) {
+      const ctx = document.getElementById('productionChart').getContext('2d');
+      if (productionChart) productionChart.destroy();
+
+      productionChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            label: 'تولید',
+            data,
+            borderRadius: 10,
+            backgroundColor: ['#06d6a0', '#118ab2', '#ef476f', '#ffd166']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: { font: { family: 'Vazirmatn' } }
+            },
+            tooltip: {
+              rtl: true,
+              titleFont: { family: 'Vazirmatn' },
+              bodyFont: { family: 'Vazirmatn' }
+            }
+          },
+          scales: {
+            x: {
+              ticks: { font: { family: 'Vazirmatn' } }
+            },
+            y: {
+              ticks: { font: { family: 'Vazirmatn' } }
+            }
+          }
+        }
+      });
+    }
+
+    function initPieChart() {
+      const ctx = document.getElementById('salesPie').getContext('2d');
+      if (salesPie) salesPie.destroy();
+
+      salesPie = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['محصول A', 'محصول B', 'محصول C'],
+          datasets: [{
+            data: [45, 30, 25],
+            backgroundColor: ['#118ab2', '#06d6a0', '#ef476f'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { font: { family: 'Vazirmatn' } }
+            },
+            tooltip: {
+              rtl: true,
+              titleFont: { family: 'Vazirmatn' },
+              bodyFont: { family: 'Vazirmatn' }
+            }
+          }
+        }
+      });
+    }
+
+    function updateDashboard(period) {
+      const data = salesDataMap[period];
+
+      initSalesChart(data.labels, data.sales);
+      initPieChart();
+      initProductionChart(data.labels, data.production);
+
+      animateNumber(document.getElementById('salesTotal'), period === '7' ? 128000000 : period === '30' ? 512000000 : 1512000000);
+      animateNumber(document.getElementById('salesOrders'), period === '7' ? 48 : period === '30' ? 192 : 620);
+      animateNumber(document.getElementById('salesConversion'), period === '7' ? 6 : period === '30' ? 7 : 8, '%');
+      animateNumber(document.getElementById('salesAOV'), period === '7' ? 2600000 : period === '30' ? 2700000 : 2450000);
+
+      animateNumber(document.getElementById('prodToday'), period === '7' ? 380 : period === '30' ? 1520 : 4680);
+      animateNumber(document.getElementById('prodWaste'), period === '7' ? 3 : period === '30' ? 4 : 5, '%');
+      animateNumber(document.getElementById('prodEfficiency'), period === '7' ? 81 : period === '30' ? 84 : 88, '%');
+      animateNumber(document.getElementById('prodBacklog'), period === '7' ? 12 : period === '30' ? 24 : 39);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const tabs = document.querySelectorAll('.dashboard-tab');
+      const salesPanel = document.getElementById('panel-sales');
+      const productionPanel = document.getElementById('panel-production');
+      const filter = document.getElementById('dashboardFilter');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.classList.remove('active-tab', 'bg-brandDark', 'text-white');
+            t.classList.add('bg-slate-100', 'text-brandDark');
+          });
+
+          tab.classList.add('active-tab', 'bg-brandDark', 'text-white');
+          tab.classList.remove('bg-slate-100');
+
+          const target = tab.dataset.tab;
+          if (target === 'sales') {
+            salesPanel.classList.remove('hidden');
+            productionPanel.classList.add('hidden');
+          } else {
+            productionPanel.classList.remove('hidden');
+            salesPanel.classList.add('hidden');
+          }
+        });
+      });
+
+      filter.addEventListener('change', function () {
+        updateDashboard(this.value);
+      });
+
+      updateDashboard(filter.value);
+    });
+  })();
+</script>
+
 </body>
 </html>
