@@ -43,6 +43,67 @@
       font-family: 'Vazirmatn', sans-serif;
     }
 
+    .hero-animated-bg {
+  position: relative;
+  overflow: hidden; /* برای جلوگیری از بیرون زدن دایره‌ها از کادر */
+}
+
+/* استایل دایره‌های شناور پس‌زمینه */
+.bg-bubble {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px); /* ایجاد حالت محو و ملایم (Glow Effect) */
+  z-index: 0;
+  pointer-events: none; /* غیرفعال کردن کلیک روی دایره‌ها */
+  opacity: 0.15; /* نیمه‌شفاف بودن برای حفظ خوانایی متن */
+  animation: floatAround 25s infinite alternate ease-in-out;
+}
+
+/* تنظیم موقعیت و رنگ دایره‌ها */
+.bubble-1 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, #118ab2 0%, transparent 70%);
+  top: -10%;
+  right: -5%;
+  animation-duration: 20s;
+}
+
+.bubble-2 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, #ef476f 0%, transparent 70%);
+  bottom: -15%;
+  left: -10%;
+  animation-duration: 28s;
+  animation-delay: -5s;
+}
+
+.bubble-3 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, #06d6a0 0%, transparent 70%);
+  top: 40%;
+  left: 30%;
+  animation-duration: 24s;
+  animation-delay: -10s;
+}
+
+/* تعریف انیمیشن حرکت دایره‌ها */
+@keyframes floatAround {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1) rotate(120deg);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95) rotate(240deg);
+  }
+  100% {
+    transform: translate(0, 0) scale(1) rotate(360deg);
+  }
+}
     .reveal {
       opacity: 0;
       transform: translateY(22px);
@@ -246,7 +307,12 @@
   </header>
 
   <main id="home">
-    <section class="mx-auto flex min-h-[80vh] max-w-6xl items-center px-6 py-12 md:py-20">
+    <section class="hero-animated-bg mx-auto flex min-h-[80vh] max-w-6xl items-center px-6 py-12 md:py-20">
+  
+      <!-- دایره‌های انیمیشنی پس‌زمینه -->
+      <div class="bg-bubble bubble-1"></div>
+      <div class="bg-bubble bubble-2"></div>
+      <div class="bg-bubble bubble-3"></div>
       <div class="grid w-full gap-12 md:grid-cols-[1.15fr_0.85fr] md:items-center">
         <div class="reveal" data-reveal-delay="0">
           <span class="inline-block mb-4 rounded-full bg-brandBlue/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brandBlue transition duration-300 hover:bg-brandBlue/15">
