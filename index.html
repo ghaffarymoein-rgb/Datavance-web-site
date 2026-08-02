@@ -623,7 +623,7 @@
       </div>
 
     
-  <section id="dashboard" class="w-full bg-white py-20">
+  <section id="dashboard" class="mx-auto max-w-6xl px-6 py-20">
   <div class="reveal text-center">
     <span class="text-xs font-bold uppercase tracking-wider text-brandBlue">
       داشبورد تعاملی
@@ -667,49 +667,43 @@
     <div class="mt-6">
       <!-- Sales Panel -->
       <div id="panel-sales" class="dashboard-panel">
-        <!-- این بخش را جایگزین کنید -->
-<div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-  
-  <!-- کارت ۱: فروش کل -->
-  <article class="group rounded-2xl border border-borderLight bg-white p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
-    <p class="text-sm font-bold text-slate-500">فروش کل</p>
-    <div class="mt-3 flex items-end justify-between gap-3">
-      <span id="salesTotal" class="text-2xl font-extrabold text-brandDark">512,000,000</span>
-      <span class="rounded-full bg-brandGreen/10 px-2 py-0.5 text-[10px] font-bold text-brandGreen">+12.4%</span>
-    </div>
-    <p class="mt-2 text-xs text-slate-500">تومان</p>
-  </article>
+        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+            <p class="text-sm font-bold text-slate-500">فروش کل</p>
+            <div class="mt-3 flex items-end justify-between gap-3">
+              <span id="salesTotal" class="text-3xl font-extrabold text-brandDark">0</span>
+              <span class="rounded-full bg-brandGreen/10 px-3 py-1 text-xs font-bold text-brandGreen">+12.4%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500">تومان</p>
+          </article>
 
-  <!-- کارت ۲: تعداد سفارش -->
-  <article class="group rounded-2xl border border-borderLight bg-white p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
-    <p class="text-sm font-bold text-slate-500">تعداد سفارش</p>
-    <div class="mt-3 flex items-end justify-between gap-3">
-      <span id="salesOrders" class="text-2xl font-extrabold text-brandDark">192</span>
-      <span class="rounded-full bg-brandBlue/10 px-2 py-0.5 text-[10px] font-bold text-brandBlue">+8.1%</span>
-    </div>
-    <p class="mt-2 text-xs text-slate-500">عدد</p>
-  </article>
+          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+            <p class="text-sm font-bold text-slate-500">تعداد سفارش</p>
+            <div class="mt-3 flex items-end justify-between gap-3">
+              <span id="salesOrders" class="text-3xl font-extrabold text-brandDark">0</span>
+              <span class="rounded-full bg-brandBlue/10 px-3 py-1 text-xs font-bold text-brandBlue">+8.1%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500">عدد</p>
+          </article>
 
-  <!-- کارت ۳: نرخ تبدیل -->
-  <article class="group rounded-2xl border border-borderLight bg-white p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
-    <p class="text-sm font-bold text-slate-500">نرخ تبدیل</p>
-    <div class="mt-3 flex items-end justify-between gap-3">
-      <span id="salesConversion" class="text-2xl font-extrabold text-brandDark">7%</span>
-      <span class="rounded-full bg-brandYellow/20 px-2 py-0.5 text-[10px] font-bold text-brandDark">+2.3%</span>
-    </div>
-    <p class="mt-2 text-xs text-slate-500">از بازدید به خرید</p>
-  </article>
+          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+            <p class="text-sm font-bold text-slate-500">نرخ تبدیل</p>
+            <div class="mt-3 flex items-end justify-between gap-3">
+              <span id="salesConversion" class="text-3xl font-extrabold text-brandDark">0%</span>
+              <span class="rounded-full bg-brandYellow/20 px-3 py-1 text-xs font-bold text-brandDark">+2.3%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500">از بازدید به خرید</p>
+          </article>
 
-  <!-- کارت ۴: سبد متوسط -->
-  <article class="group rounded-2xl border border-borderLight bg-white p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
-    <p class="text-sm font-bold text-slate-500">سبد متوسط</p>
-    <div class="mt-3 flex items-end justify-between gap-3">
-      <span id="salesAOV" class="text-2xl font-extrabold text-brandDark">2,700,000</span>
-      <span class="rounded-full bg-brandPink/10 px-2 py-0.5 text-[10px] font-bold text-brandPink">+5.7%</span>
-    </div>
-    <p class="mt-2 text-xs text-slate-500">تومان</p>
-  </article>
-</div>
+          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+            <p class="text-sm font-bold text-slate-500">سبد متوسط</p>
+            <div class="mt-3 flex items-end justify-between gap-3">
+              <span id="salesAOV" class="text-3xl font-extrabold text-brandDark">0</span>
+              <span class="rounded-full bg-brandPink/10 px-3 py-1 text-xs font-bold text-brandPink">+5.7%</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-500">تومان</p>
+          </article>
+        </div>
 
         <div class="mt-6 grid gap-6 lg:grid-cols-3">
           <div class="lg:col-span-2 rounded-2xl border border-borderLight bg-white p-4 shadow-card">
@@ -816,7 +810,6 @@
     </div>
   </div>
 </section>
-
     <section id="contact" class="border-t border-borderLight bg-white py-20">
       <div class="mx-auto max-w-6xl px-6">
         <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
