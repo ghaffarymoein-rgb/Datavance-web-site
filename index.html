@@ -177,6 +177,14 @@
       box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.18);
     }
 
+    /* ===== Lightbox ===== */
+    #sliderTrack .media-zoom { cursor: zoom-in; }
+    #lightbox img { animation: lbIn 250ms cubic-bezier(0.16, 1, 0.3, 1); }
+    @keyframes lbIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -198,7 +206,8 @@
       .nav-link,
       .mobile-menu-animated,
       .btn-press,
-      .field-animate {
+      .field-animate,
+      #lightbox img {
         animation: none !important;
         transition: none !important;
         transform: none !important;
@@ -581,14 +590,14 @@
               </div>
 
               <div class="media-zoom relative h-full w-full shrink-0">
-                <img data-src="image/picture_5.jpg" alt="Slide 2" class="h-full w-full object-cover" />
+                <img data-src="image/picture_5.jpg" alt="Slide 4" class="h-full w-full object-cover" />
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 text-white">
-                  <p class="text-xs font-semibold sm:text-sm">طراحی داشبورد متصل به سنسود به کار رفته روی ماشین‌های خط تولید</p>
+                  <p class="text-xs font-semibold sm:text-sm">طراحی داشبورد متصل به سنسور به کار رفته روی ماشین‌های خط تولید</p>
                 </div>
               </div>
 
               <div class="media-zoom relative h-full w-full shrink-0">
-                <img data-src="image/picture_4.jpg" alt="Slide 4" class="h-full w-full object-cover" />
+                <img data-src="image/picture_4.jpg" alt="Slide 5" class="h-full w-full object-cover" />
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 text-white">
                   <p class="text-xs font-semibold sm:text-sm">تدوین گزارش عملکرد سالانه فروش یک شرکت بازرگانی و تحلیل آن با دلار</p>
                 </div>
@@ -600,6 +609,7 @@
               <button type="button" class="sliderDot h-2 w-2 rounded-full bg-white/60 transition duration-300 hover:bg-white" data-index="1"></button>
               <button type="button" class="sliderDot h-2 w-2 rounded-full bg-white/60 transition duration-300 hover:bg-white" data-index="2"></button>
               <button type="button" class="sliderDot h-2 w-2 rounded-full bg-white/60 transition duration-300 hover:bg-white" data-index="3"></button>
+              <button type="button" class="sliderDot h-2 w-2 rounded-full bg-white/60 transition duration-300 hover:bg-white" data-index="4"></button>
             </div>
 
             <div id="sliderError" class="hidden absolute left-3 right-3 top-3 z-20 rounded-lg border border-brandPink/20 bg-white/95 p-2 shadow-sm backdrop-blur-sm">
@@ -899,6 +909,24 @@
     </div>
   </footer>
 
+  <!-- Lightbox -->
+  <div id="lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 p-4" role="dialog" aria-modal="true" aria-label="نمایش تصویر">
+    <button type="button" id="lbClose" aria-label="بستن"
+      class="btn-press absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-xl text-white hover:bg-white/25">✕</button>
+
+    <div class="absolute left-4 top-4 z-10 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white" id="lbCounter" dir="ltr"></div>
+
+    <button type="button" id="lbPrev" aria-label="قبلی"
+      class="btn-press absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-xl text-white hover:bg-white/25 md:left-6">&larr;</button>
+    <button type="button" id="lbNext" aria-label="بعدی"
+      class="btn-press absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-xl text-white hover:bg-white/25 md:right-6">&rarr;</button>
+
+    <figure class="flex max-h-full max-w-5xl flex-col items-center gap-3">
+      <img id="lbImg" src="" alt="" class="max-h-[80vh] w-auto max-w-full rounded-xl object-contain shadow-2xl" />
+      <figcaption id="lbCaption" class="text-center text-sm font-semibold text-white"></figcaption>
+    </figure>
+  </div>
+
   <script>
   const contactForm = document.getElementById("contactForm");
   const formNotice = document.getElementById("formNotice");
@@ -1055,6 +1083,73 @@
 
       track.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
       track.addEventListener('mouseleave', restartAutoPlay);
+
+      // ===== Lightbox =====
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lbImg');
+      const lbCaption = document.getElementById('lbCaption');
+      const lbCounter = document.getElementById('lbCounter');
+      let lbIndex = 0;
+
+      function renderLightbox() {
+        const slide = slides[lbIndex];
+        const img = slide.querySelector('img');
+        const caption = slide.querySelector('p');
+        lbImg.src = img.src;
+        lbImg.alt = img.alt || '';
+        lbCaption.textContent = caption ? caption.textContent : '';
+        lbCounter.textContent = `${lbIndex + 1} / ${slides.length}`;
+      }
+
+      function openLightbox(i) {
+        lbIndex = i;
+        renderLightbox();
+        lb.classList.remove('hidden');
+        lb.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+        clearInterval(autoPlayTimer);
+      }
+
+      function closeLightbox() {
+        lb.classList.add('hidden');
+        lb.classList.remove('flex');
+        document.body.style.overflow = '';
+        slideTo(lbIndex);      // اسلایدر روی عکس آخرِ دیده‌شده بماند
+        restartAutoPlay();
+      }
+
+      function lbStep(delta) {
+        lbIndex = (lbIndex + delta + slides.length) % slides.length;
+        renderLightbox();
+      }
+
+      slides.forEach((slide, i) => slide.addEventListener('click', () => openLightbox(i)));
+
+      document.getElementById('lbClose').addEventListener('click', closeLightbox);
+      document.getElementById('lbPrev').addEventListener('click', (e) => { e.stopPropagation(); lbStep(-1); });
+      document.getElementById('lbNext').addEventListener('click', (e) => { e.stopPropagation(); lbStep(1); });
+
+      // کلیک روی پس‌زمینه (نه روی عکس) پنجره را می‌بندد
+      lb.addEventListener('click', (e) => {
+        if (e.target === lb) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (lb.classList.contains('hidden')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') lbStep(-1);
+        if (e.key === 'ArrowRight') lbStep(1);
+      });
+
+      // سوایپ در موبایل
+      let touchStartX = null;
+      lb.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+      lb.addEventListener('touchend', (e) => {
+        if (touchStartX === null) return;
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 50) lbStep(dx > 0 ? -1 : 1);
+        touchStartX = null;
+      });
 
       slideTo(0);
       restartAutoPlay();
