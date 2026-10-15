@@ -62,6 +62,68 @@
       transform: translateY(0);
     }
 
+    /* ===== Hero navy patterned box ===== */
+    .hero-navy {
+      position: relative;
+      overflow: hidden;
+      background-color: #073b4c;
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(17, 138, 178, 0.50), transparent 42%),
+        radial-gradient(circle at 88% 85%, rgba(239, 71, 111, 0.28), transparent 40%),
+        radial-gradient(circle at 70% 10%, rgba(6, 214, 160, 0.16), transparent 35%),
+        radial-gradient(rgba(255, 255, 255, 0.13) 1.3px, transparent 1.3px);
+      background-size: auto, auto, auto, 30px 30px;
+    }
+
+    .hero-navy::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 90px 90px;
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+              mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+      pointer-events: none;
+    }
+
+    .hero-ring {
+      position: absolute;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(255, 255, 255, 0.10);
+      pointer-events: none;
+    }
+
+    .hero-title-gradient {
+      background: linear-gradient(90deg, #ffd166, #06d6a0 60%, #118ab2);
+      -webkit-background-clip: text;
+              background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .hero-chip {
+      transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), background-color 280ms ease;
+    }
+    .hero-chip:hover {
+      transform: translateY(-3px);
+      background-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .float-soft-delay {
+      animation: floatSoft 3.6s ease-in-out infinite;
+      animation-delay: 0.8s;
+    }
+
+    .pulse-dot {
+      animation: pulseDot 2s ease-in-out infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(6, 214, 160, 0.6); }
+      50%      { box-shadow: 0 0 0 7px rgba(6, 214, 160, 0); }
+    }
+
     .animated-gradient {
       background-size: 200% 200%;
       animation: gradientShift 9s ease infinite;
@@ -200,6 +262,8 @@
       .reveal,
       .animated-gradient,
       .float-soft,
+      .float-soft-delay,
+      .pulse-dot,
       .hover-lift,
       .icon-pop,
       .media-zoom img,
@@ -258,69 +322,97 @@
   </header>
 
   <main id="home">
-    <section class="mx-auto flex min-h-[80vh] max-w-6xl items-center px-6 py-12 md:py-20">
-      <div class="grid w-full gap-12 md:grid-cols-[1.15fr_0.85fr] md:items-center">
-        <div class="reveal" data-reveal-delay="0">
-          <span class="inline-block mb-4 rounded-full bg-brandBlue/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brandBlue transition duration-300 hover:bg-brandBlue/15">
-            سیستم‌سازی و بهینه‌سازی داده‌محور
-          </span>
+    <!-- ===== Hero: باکس سورمه‌ای طرح‌دار ===== -->
+    <div class="hero-navy rounded-b-[2.5rem] md:rounded-b-[4rem] shadow-[0_30px_60px_-30px_rgba(7,59,76,0.55)]">
+      <span class="hero-ring -left-24 -top-24 h-80 w-80"></span>
+      <span class="hero-ring -left-10 -top-10 h-52 w-52"></span>
+      <span class="hero-ring -bottom-32 -right-20 h-96 w-96"></span>
 
-          <h1 class="text-4xl font-extrabold leading-[1.15] text-brandDark sm:text-5xl lg:text-6xl">
-            توسعه و بهبود کسب‌وکار با تحلیل داده‌ها
-          </h1>
+      <section class="relative mx-auto flex min-h-[85vh] max-w-6xl items-center px-6 pb-24 pt-14 md:pb-28 md:pt-20">
+        <div class="grid w-full gap-12 md:grid-cols-[1.15fr_0.85fr] md:items-center">
 
-          <p class="mt-6 max-w-2xl text-base leading-8 text-slate-500 text-justify" style="text-justify: inter-word;">
-            تیم متخصصین <strong class="text-brandDark">دیتاوَنس</strong> با تلفیق دانش روز مهندسی صنایع، بهینه‌سازی فرایندها و تحلیل داده، گلوگاه‌های ساختاری سازمان شما را شناسایی کرده و تصمیمات مدیریتی را با مدل‌های علمی و داشبوردهای پویا در تصمیم‌گیری مدیریتی و انتخاب استراتژی به شما کمک می‌کند.
-          </p>
+          <div class="reveal" data-reveal-delay="0">
+            <span class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wider text-brandYellow backdrop-blur-sm transition duration-300 hover:bg-white/15">
+              <span class="pulse-dot h-2 w-2 rounded-full bg-brandGreen"></span>
+              سیستم‌سازی و بهینه‌سازی داده‌محور
+            </span>
 
-          <div class="mt-8 flex flex-wrap gap-4">
-            <a href="#deliverables"
-               class="btn-press rounded-xl bg-brandPink px-6 py-3.5 text-sm font-bold text-white shadow-md hover:bg-opacity-90 hover:shadow-lg">
-              خروجی‌های مورد انتظار شما
-            </a>
-            <a href="#services"
-               class="btn-press rounded-xl border-2 border-brandDark/10 bg-transparent px-6 py-3.5 text-sm font-semibold text-brandDark hover:border-brandDark hover:bg-brandDark/5">
-              خدمات تخصصی ما
-            </a>
-          </div>
-        </div>
+            <h1 class="text-4xl font-extrabold leading-[1.2] text-white sm:text-5xl lg:text-6xl">
+              توسعه و بهبود کسب‌وکار
+              <span class="hero-title-gradient block">با تحلیل داده‌ها</span>
+            </h1>
 
-        <div class="reveal" data-reveal-delay="120">
-          <div class="float-soft rounded-3xl border border-borderLight bg-white p-8 shadow-card transition duration-500 hover:shadow-softGlow">
-            <div class="flex items-start justify-between gap-3">
-              <div>
-                <p class="text-xs font-semibold uppercase text-slate-400">ارتباط مستقیم با ما</p>
-                <p class="mt-2 text-2xl font-bold tracking-wide text-brandDark" dir="ltr">0915 338 7633</p>
-              </div>
-              <a href="tel:09153387633"
-                 class="btn-press rounded-xl bg-brandBlue/10 p-3 text-brandBlue hover:bg-brandBlue hover:text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
+            <p class="mt-6 max-w-2xl text-base leading-8 text-slate-300 text-justify" style="text-justify: inter-word;">
+              تیم متخصصین <strong class="text-brandYellow">دیتاوَنس</strong> با تلفیق دانش روز مهندسی صنایع، بهینه‌سازی فرایندها و تحلیل داده، گلوگاه‌های ساختاری سازمان شما را شناسایی کرده و تصمیمات مدیریتی را با مدل‌های علمی و داشبوردهای پویا در تصمیم‌گیری مدیریتی و انتخاب استراتژی به شما کمک می‌کند.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a href="#deliverables"
+                 class="btn-press rounded-xl bg-brandPink px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-brandPink/30 hover:shadow-xl hover:shadow-brandPink/40">
+                خروجی‌های مورد انتظار شما
+              </a>
+              <a href="#services"
+                 class="btn-press rounded-xl border-2 border-white/25 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm hover:border-white/60 hover:bg-white/10">
+                خدمات تخصصی ما
               </a>
             </div>
 
-            <div class="mt-8 space-y-4">
-              <div class="flex items-center gap-3 transition duration-300 hover:translate-x-0.5">
-                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brandGreen/10 font-bold text-brandGreen transition duration-300 hover:scale-110">✓</div>
+            <div class="mt-10 flex flex-wrap items-center gap-2.5">
+              <span class="text-xs text-slate-400">ابزارهای ما:</span>
+              <span class="hero-chip rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold text-white" dir="ltr">Power BI</span>
+              <span class="hero-chip rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold text-white" dir="ltr">Excel</span>
+              <span class="hero-chip rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold text-white" dir="ltr">COMFAR</span>
+            </div>
+          </div>
+
+          <div class="reveal relative" data-reveal-delay="120">
+            <div class="absolute -inset-6 rounded-[2.5rem] bg-brandBlue/30 blur-3xl"></div>
+
+            <div class="float-soft-delay absolute -top-6 left-4 z-10 hidden items-end gap-1 rounded-2xl border border-white/20 bg-white/10 px-3 py-2.5 backdrop-blur-md sm:flex" aria-hidden="true">
+              <span class="h-3 w-1.5 rounded-full bg-brandGreen"></span>
+              <span class="h-5 w-1.5 rounded-full bg-brandBlue"></span>
+              <span class="h-7 w-1.5 rounded-full bg-brandYellow"></span>
+              <span class="h-4 w-1.5 rounded-full bg-brandPink"></span>
+              <span class="h-8 w-1.5 rounded-full bg-brandGreen"></span>
+            </div>
+
+            <div class="float-soft relative rounded-3xl border border-white/60 bg-white p-8 shadow-2xl shadow-black/30 transition duration-500 hover:shadow-softGlow">
+              <div class="flex items-start justify-between gap-3">
                 <div>
-                  <h4 class="text-sm font-bold text-brandDark">سیستم‌سازی و بهینه‌سازی داده‌محور</h4>
-                  <p class="text-xs text-slate-400">هدررفت‌ها و گلوگاه‌ها را شناسایی کنید</p>
+                  <p class="text-xs font-semibold uppercase text-slate-400">ارتباط مستقیم با ما</p>
+                  <p class="mt-2 text-2xl font-bold tracking-wide text-brandDark" dir="ltr">0915 338 7633</p>
                 </div>
+                <a href="tel:09153387633"
+                   class="btn-press rounded-xl bg-brandBlue/10 p-3 text-brandBlue hover:bg-brandBlue hover:text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </a>
               </div>
 
-              <div class="flex items-center gap-3 transition duration-300 hover:translate-x-0.5">
-                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brandYellow/20 font-bold text-brandDark transition duration-300 hover:scale-110">💡</div>
-                <div>
-                  <h4 class="text-sm font-bold text-brandDark">تصمیم‌گیری داده محور  </h4>
-                  <p class="text-xs text-slate-400">پر پایه‌ی داده‌های تصمیم‌های بهینه بگیرید</p>
+              <div class="mt-8 space-y-4">
+                <div class="flex items-center gap-3 transition duration-300 hover:translate-x-0.5">
+                  <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brandGreen/10 font-bold text-brandGreen transition duration-300 hover:scale-110">✓</div>
+                  <div>
+                    <h4 class="text-sm font-bold text-brandDark">سیستم‌سازی و بهینه‌سازی داده‌محور</h4>
+                    <p class="text-xs text-slate-400">هدررفت‌ها و گلوگاه‌ها را شناسایی کنید</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3 transition duration-300 hover:translate-x-0.5">
+                  <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brandYellow/20 font-bold text-brandDark transition duration-300 hover:scale-110">💡</div>
+                  <div>
+                    <h4 class="text-sm font-bold text-brandDark">تصمیم‌گیری داده محور</h4>
+                    <p class="text-xs text-slate-400">بر پایه‌ی داده‌ها تصمیم‌های بهینه بگیرید</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <section id="services" class="mx-auto max-w-6xl px-6 py-20">
       <div class="reveal text-center" data-reveal-delay="0">
@@ -640,349 +732,338 @@
         </div>
       </div>
     </section>
+
     <section id="about" class="border-y border-borderLight bg-white py-20">
-  <div class="mx-auto max-w-6xl px-6">
+      <div class="mx-auto max-w-6xl px-6">
 
-    <!-- Section Header -->
-    <div class="reveal text-center" data-reveal-delay="0">
-      <span class="text-xs font-bold uppercase tracking-wider text-brandPink">
-        سوابق همکاری
-      </span>
+        <div class="reveal text-center" data-reveal-delay="0">
+          <span class="text-xs font-bold uppercase tracking-wider text-brandPink">
+            سوابق همکاری
+          </span>
 
-      <h2 class="mt-3 text-3xl font-extrabold text-brandDark sm:text-4xl">
-        مورد اعتماد کسب‌وکارها
-      </h2>
+          <h2 class="mt-3 text-3xl font-extrabold text-brandDark sm:text-4xl">
+            مورد اعتماد کسب‌وکارها
+          </h2>
 
-      <p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-500 sm:text-base">
-        افتخار همکاری با مجموعه‌هایی از صنایع مختلف در زمینه تحلیل داده،
-        هوش تجاری، سیستم‌سازی و بهینه‌سازی فرآیندهای کسب‌وکار.
-      </p>
-    </div>
+          <p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-500 sm:text-base">
+            افتخار همکاری با مجموعه‌هایی از صنایع مختلف در زمینه تحلیل داده،
+            هوش تجاری، سیستم‌سازی و بهینه‌سازی فرآیندهای کسب‌وکار.
+          </p>
+        </div>
 
-    <!-- Company Logos -->
-    <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
 
-      <!-- Company 1 -->
-      <a href="https://www.amintojjar.ir/"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="وب‌سایت شرکت اول"
-         class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
-         data-reveal-delay="0">
-        <img src="image/logo_company_1.jpg"
-             alt="لوگوی شرکت اول"
-             loading="lazy"
-             class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
-             onerror="this.style.display='none'">
-      </a>
+          <a href="https://www.amintojjar.ir/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="وب‌سایت شرکت اول"
+             class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
+             data-reveal-delay="0">
+            <img src="image/logo_company_1.jpg"
+                 alt="لوگوی شرکت اول"
+                 loading="lazy"
+                 class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
+                 onerror="this.style.display='none'">
+          </a>
 
-      <!-- Company 2 -->
-      <a href="https://samipakhsh.com/"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="وب‌سایت شرکت دوم"
-         class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
-         data-reveal-delay="50">
-        <img src="image/logo_company_2.jpg"
-             alt="لوگوی شرکت دوم"
-             loading="lazy"
-             class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
-             onerror="this.style.display='none'">
-      </a>
+          <a href="https://samipakhsh.com/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="وب‌سایت شرکت دوم"
+             class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
+             data-reveal-delay="50">
+            <img src="image/logo_company_2.jpg"
+                 alt="لوگوی شرکت دوم"
+                 loading="lazy"
+                 class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
+                 onerror="this.style.display='none'">
+          </a>
 
-      <!-- Company 3 -->
-      <a href="https://www.apadenplast.com/"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="وب‌سایت شرکت سوم"
-         class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
-         data-reveal-delay="100">
-        <img src="image/logo_company_3.jpg"
-             alt="لوگوی شرکت سوم"
-             loading="lazy"
-             class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
-             onerror="this.style.display='none'">
-      </a>
+          <a href="https://www.apadenplast.com/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="وب‌سایت شرکت سوم"
+             class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
+             data-reveal-delay="100">
+            <img src="image/logo_company_3.jpg"
+                 alt="لوگوی شرکت سوم"
+                 loading="lazy"
+                 class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
+                 onerror="this.style.display='none'">
+          </a>
 
-      <!-- Company 4 -->
-      <a href="https://parstg.ir/"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="وب‌سایت شرکت چهارم"
-         class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
-         data-reveal-delay="150">
-        <img src="image/logo_company_4.jpg"
-             alt="لوگوی شرکت چهارم"
-             loading="lazy"
-             class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
-             onerror="this.style.display='none'">
-      </a>
+          <a href="https://parstg.ir/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="وب‌سایت شرکت چهارم"
+             class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
+             data-reveal-delay="150">
+            <img src="image/logo_company_4.jpg"
+                 alt="لوگوی شرکت چهارم"
+                 loading="lazy"
+                 class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
+                 onerror="this.style.display='none'">
+          </a>
 
-      <!-- Company 5 -->
-      <a href="https://www.apsi.ir/"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="وب‌سایت شرکت پنجم"
-         class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
-         data-reveal-delay="200">
-        <img src="image/logo_company_5.jpg"
-             alt="لوگوی شرکت پنجم"
-             loading="lazy"
-             class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
-             onerror="this.style.display='none'">
-      </a>
+          <a href="https://www.apsi.ir/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="وب‌سایت شرکت پنجم"
+             class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
+             data-reveal-delay="200">
+            <img src="image/logo_company_5.jpg"
+                 alt="لوگوی شرکت پنجم"
+                 loading="lazy"
+                 class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
+                 onerror="this.style.display='none'">
+          </a>
 
-      <!-- Company 6 -->
-      <a href="https://www.investorun.com/"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="وب‌سایت شرکت ششم"
-         class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
-         data-reveal-delay="250">
-        <img src="image/logo_company_6.jpg"
-             alt="لوگوی شرکت ششم"
-             loading="lazy"
-             class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
-             onerror="this.style.display='none'">
-      </a>
+          <a href="https://www.investorun.com/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="وب‌سایت شرکت ششم"
+             class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
+             data-reveal-delay="250">
+            <img src="image/logo_company_6.jpg"
+                 alt="لوگوی شرکت ششم"
+                 loading="lazy"
+                 class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
+                 onerror="this.style.display='none'">
+          </a>
 
-      <!-- Company 7 -->
-      <a href="https://pezhvaksanat.com/"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="وب‌سایت شرکت هفتم"
-         class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
-         data-reveal-delay="300">
-        <img src="image/logo_company_7.png"
-             alt="لوگوی شرکت هفتم"
-             loading="lazy"
-             class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
-             onerror="this.style.display='none'">
-      </a>
+          <a href="https://pezhvaksanat.com/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="وب‌سایت شرکت هفتم"
+             class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
+             data-reveal-delay="300">
+            <img src="image/logo_company_7.png"
+                 alt="لوگوی شرکت هفتم"
+                 loading="lazy"
+                 class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
+                 onerror="this.style.display='none'">
+          </a>
 
-      <!-- Company 8 -->
-      <a href="https://partgowal.com/"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="وب‌سایت شرکت هشتم"
-         class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
-         data-reveal-delay="350">
-        <img src="image/logo_company_8.jpg"
-             alt="لوگوی شرکت هشتم"
-             loading="lazy"
-             class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
-             onerror="this.style.display='none'">
-      </a>
+          <a href="https://partgowal.com/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="وب‌سایت شرکت هشتم"
+             class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
+             data-reveal-delay="350">
+            <img src="image/logo_company_8.jpg"
+                 alt="لوگوی شرکت هشتم"
+                 loading="lazy"
+                 class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
+                 onerror="this.style.display='none'">
+          </a>
 
-      <!-- Company 9 -->
-      <a href="https://zamanfoulad.com/"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="وب‌سایت شرکت نهم"
-         class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
-         data-reveal-delay="400">
-        <img src="image/logo_company_9.jpg"
-             alt="لوگوی شرکت نهم"
-             loading="lazy"
-             class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
-             onerror="this.style.display='none'">
-      </a>
+          <a href="https://zamanfoulad.com/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="وب‌سایت شرکت نهم"
+             class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
+             data-reveal-delay="400">
+            <img src="image/logo_company_9.jpg"
+                 alt="لوگوی شرکت نهم"
+                 loading="lazy"
+                 class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
+                 onerror="this.style.display='none'">
+          </a>
 
-      <!-- Company 10 -->
-      <a href="https://www.meedc.ir/"
-         target="_blank" rel="noopener noreferrer"
-         aria-label="وب‌سایت شرکت دهم"
-         class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
-         data-reveal-delay="450">
-        <img src="image/logo_company_10.jpg"
-             alt="لوگوی شرکت دهم"
-             loading="lazy"
-             class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
-             onerror="this.style.display='none'">
-      </a>
+          <a href="https://www.meedc.ir/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="وب‌سایت شرکت دهم"
+             class="reveal group flex h-28 items-center justify-center rounded-2xl border border-borderLight bg-bgLight p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brandBlue/40 hover:bg-white hover:shadow-hoverCard"
+             data-reveal-delay="450">
+            <img src="image/logo_company_10.jpg"
+                 alt="لوگوی شرکت دهم"
+                 loading="lazy"
+                 class="h-24 w-[85%] object-contain transition-transform duration-300 group-hover:scale-110"
+                 onerror="this.style.display='none'">
+          </a>
 
-    </div>
+        </div>
 
-  </div>
-</section>
+      </div>
+    </section>
+
     <section id="dashboard" class="mx-auto max-w-6xl px-6 py-20">
-  <div class="reveal text-center">
-    <span class="text-xs font-bold uppercase tracking-wider text-brandBlue">
-      داشبورد تعاملی
-    </span>
-    <h2 class="mt-3 text-3xl font-extrabold text-brandDark">
-      نمونه خروجی داشبورد
-    </h2>
-    <p class="mt-4 mx-auto max-w-2xl text-slate-500">
-      یک نمونه داشبورد پویا با تب‌های مجزا، KPI های تعاملی، نمودار داینامیک و فیلتر زمانی.
-    </p>
-  </div>
-
-  <div class="reveal mt-10 rounded-3xl border border-borderLight bg-white p-4 shadow-card md:p-6">
-    <!-- Tabs -->
-    <div class="flex flex-wrap gap-2 border-b border-borderLight pb-4">
-      <button
-        type="button"
-        class="dashboard-tab active-tab rounded-xl bg-brandDark px-4 py-2 text-sm font-bold text-white transition hover:bg-brandDark/90"
-        data-tab="sales">
-        فروش
-      </button>
-      <button
-        type="button"
-        class="dashboard-tab rounded-xl bg-slate-100 px-4 py-2 text-sm font-bold text-brandDark transition hover:bg-slate-200"
-        data-tab="production">
-        رصد تولید
-      </button>
-
-      <div class="ms-auto">
-        <select
-          id="dashboardFilter"
-          class="rounded-xl border border-borderLight bg-white px-4 py-2 text-sm font-bold text-brandDark outline-none transition focus:border-brandBlue">
-          <option value="7">۷ روز اخیر</option>
-          <option value="30" selected>۳۰ روز اخیر</option>
-          <option value="90">۹۰ روز اخیر</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Panels -->
-    <div class="mt-6">
-      <!-- Sales Panel -->
-      <div id="panel-sales" class="dashboard-panel">
-        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
-            <p class="text-sm font-bold text-slate-500">فروش کل</p>
-            <div class="mt-3 flex items-end justify-between gap-3">
-              <span id="salesTotal" class="text-3xl font-extrabold text-brandDark">0</span>
-              <span class="rounded-full bg-brandGreen/10 px-3 py-1 text-xs font-bold text-brandGreen">+12.4%</span>
-            </div>
-            <p class="mt-2 text-xs text-slate-500">تومان</p>
-          </article>
-
-          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
-            <p class="text-sm font-bold text-slate-500">تعداد سفارش</p>
-            <div class="mt-3 flex items-end justify-between gap-3">
-              <span id="salesOrders" class="text-3xl font-extrabold text-brandDark">0</span>
-              <span class="rounded-full bg-brandBlue/10 px-3 py-1 text-xs font-bold text-brandBlue">+8.1%</span>
-            </div>
-            <p class="mt-2 text-xs text-slate-500">عدد</p>
-          </article>
-
-          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
-            <p class="text-sm font-bold text-slate-500">نرخ تبدیل</p>
-            <div class="mt-3 flex items-end justify-between gap-3">
-              <span id="salesConversion" class="text-3xl font-extrabold text-brandDark">0%</span>
-              <span class="rounded-full bg-brandYellow/20 px-3 py-1 text-xs font-bold text-brandDark">+2.3%</span>
-            </div>
-            <p class="mt-2 text-xs text-slate-500">از بازدید به خرید</p>
-          </article>
-
-          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
-            <p class="text-sm font-bold text-slate-500">سبد متوسط</p>
-            <div class="mt-3 flex items-end justify-between gap-3">
-              <span id="salesAOV" class="text-3xl font-extrabold text-brandDark">0</span>
-              <span class="rounded-full bg-brandPink/10 px-3 py-1 text-xs font-bold text-brandPink">+5.7%</span>
-            </div>
-            <p class="mt-2 text-xs text-slate-500">تومان</p>
-          </article>
-        </div>
-
-        <div class="mt-6 grid gap-6 lg:grid-cols-3">
-          <div class="lg:col-span-2 rounded-2xl border border-borderLight bg-white p-4 shadow-card">
-            <div class="mb-4 flex items-center justify-between gap-3">
-              <h3 class="text-lg font-extrabold text-brandDark">روند فروش</h3>
-              <span class="text-xs font-bold text-slate-500">داینامیک با hover</span>
-            </div>
-            <div class="h-[320px]">
-              <canvas id="dashboardChart"></canvas>
-            </div>
-          </div>
-
-          <div class="rounded-2xl border border-borderLight bg-white p-4 shadow-card">
-            <h3 class="text-lg font-extrabold text-brandDark">سهم فروش</h3>
-            <div class="mt-4 h-[320px]">
-              <canvas id="salesPie"></canvas>
-            </div>
-          </div>
-        </div>
+      <div class="reveal text-center">
+        <span class="text-xs font-bold uppercase tracking-wider text-brandBlue">
+          داشبورد تعاملی
+        </span>
+        <h2 class="mt-3 text-3xl font-extrabold text-brandDark">
+          نمونه خروجی داشبورد
+        </h2>
+        <p class="mt-4 mx-auto max-w-2xl text-slate-500">
+          یک نمونه داشبورد پویا با تب‌های مجزا، KPI های تعاملی، نمودار داینامیک و فیلتر زمانی.
+        </p>
       </div>
 
-      <!-- Production Panel -->
-      <div id="panel-production" class="dashboard-panel hidden">
-        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
-            <p class="text-sm font-bold text-slate-500">تولید امروز</p>
-            <div class="mt-3 flex items-end justify-between gap-3">
-              <span id="prodToday" class="text-3xl font-extrabold text-brandDark">0</span>
-              <span class="rounded-full bg-brandGreen/10 px-3 py-1 text-xs font-bold text-brandGreen">+9.2%</span>
-            </div>
-            <p class="mt-2 text-xs text-slate-500">واحد</p>
-          </article>
+      <div class="reveal mt-10 rounded-3xl border border-borderLight bg-white p-4 shadow-card md:p-6">
+        <div class="flex flex-wrap gap-2 border-b border-borderLight pb-4">
+          <button
+            type="button"
+            class="dashboard-tab active-tab rounded-xl bg-brandDark px-4 py-2 text-sm font-bold text-white transition hover:bg-brandDark/90"
+            data-tab="sales">
+            فروش
+          </button>
+          <button
+            type="button"
+            class="dashboard-tab rounded-xl bg-slate-100 px-4 py-2 text-sm font-bold text-brandDark transition hover:bg-slate-200"
+            data-tab="production">
+            رصد تولید
+          </button>
 
-          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
-            <p class="text-sm font-bold text-slate-500">نرخ ضایعات</p>
-            <div class="mt-3 flex items-end justify-between gap-3">
-              <span id="prodWaste" class="text-3xl font-extrabold text-brandDark">0%</span>
-              <span class="rounded-full bg-brandPink/10 px-3 py-1 text-xs font-bold text-brandPink">-1.1%</span>
-            </div>
-            <p class="mt-2 text-xs text-slate-500">کیفیت خط</p>
-          </article>
-
-          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
-            <p class="text-sm font-bold text-slate-500">بهره‌وری</p>
-            <div class="mt-3 flex items-end justify-between gap-3">
-              <span id="prodEfficiency" class="text-3xl font-extrabold text-brandDark">0%</span>
-              <span class="rounded-full bg-brandBlue/10 px-3 py-1 text-xs font-bold text-brandBlue">+3.4%</span>
-            </div>
-            <p class="mt-2 text-xs text-slate-500">OEE تقریبی</p>
-          </article>
-
-          <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
-            <p class="text-sm font-bold text-slate-500">سفارش معوق</p>
-            <div class="mt-3 flex items-end justify-between gap-3">
-              <span id="prodBacklog" class="text-3xl font-extrabold text-brandDark">0</span>
-              <span class="rounded-full bg-brandYellow/20 px-3 py-1 text-xs font-bold text-brandDark">-4.8%</span>
-            </div>
-            <p class="mt-2 text-xs text-slate-500">در صف تولید</p>
-          </article>
+          <div class="ms-auto">
+            <select
+              id="dashboardFilter"
+              class="rounded-xl border border-borderLight bg-white px-4 py-2 text-sm font-bold text-brandDark outline-none transition focus:border-brandBlue">
+              <option value="7">۷ روز اخیر</option>
+              <option value="30" selected>۳۰ روز اخیر</option>
+              <option value="90">۹۰ روز اخیر</option>
+            </select>
+          </div>
         </div>
 
-        <div class="mt-6 grid gap-6 lg:grid-cols-3">
-          <div class="lg:col-span-2 rounded-2xl border border-borderLight bg-white p-4 shadow-card">
-            <div class="mb-4 flex items-center justify-between gap-3">
-              <h3 class="text-lg font-extrabold text-brandDark">روند تولید</h3>
-              <span class="text-xs font-bold text-slate-500">شفت‌ها و خروجی روزانه</span>
-            </div>
-            <div class="h-[320px]">
-              <canvas id="productionChart"></canvas>
-            </div>
-          </div>
+        <div class="mt-6">
+          <!-- Sales Panel -->
+          <div id="panel-sales" class="dashboard-panel">
+            <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+                <p class="text-sm font-bold text-slate-500">فروش کل</p>
+                <div class="mt-3 flex items-end justify-between gap-3">
+                  <span id="salesTotal" class="text-3xl font-extrabold text-brandDark">0</span>
+                  <span class="rounded-full bg-brandGreen/10 px-3 py-1 text-xs font-bold text-brandGreen">+12.4%</span>
+                </div>
+                <p class="mt-2 text-xs text-slate-500">تومان</p>
+              </article>
 
-          <div class="rounded-2xl border border-borderLight bg-white p-4 shadow-card">
-            <h3 class="text-lg font-extrabold text-brandDark">وضعیت خطوط</h3>
-            <div class="mt-4 space-y-4">
-              <div>
-                <div class="mb-2 flex justify-between text-sm font-bold text-slate-500">
-                  <span>خط 1</span><span>82%</span>
+              <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+                <p class="text-sm font-bold text-slate-500">تعداد سفارش</p>
+                <div class="mt-3 flex items-end justify-between gap-3">
+                  <span id="salesOrders" class="text-3xl font-extrabold text-brandDark">0</span>
+                  <span class="rounded-full bg-brandBlue/10 px-3 py-1 text-xs font-bold text-brandBlue">+8.1%</span>
                 </div>
-                <div class="h-3 w-full overflow-hidden rounded-full bg-slate-100">
-                  <div class="h-full w-[82%] rounded-full bg-brandGreen"></div>
+                <p class="mt-2 text-xs text-slate-500">عدد</p>
+              </article>
+
+              <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+                <p class="text-sm font-bold text-slate-500">نرخ تبدیل</p>
+                <div class="mt-3 flex items-end justify-between gap-3">
+                  <span id="salesConversion" class="text-3xl font-extrabold text-brandDark">0%</span>
+                  <span class="rounded-full bg-brandYellow/20 px-3 py-1 text-xs font-bold text-brandDark">+2.3%</span>
+                </div>
+                <p class="mt-2 text-xs text-slate-500">از بازدید به خرید</p>
+              </article>
+
+              <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+                <p class="text-sm font-bold text-slate-500">سبد متوسط</p>
+                <div class="mt-3 flex items-end justify-between gap-3">
+                  <span id="salesAOV" class="text-3xl font-extrabold text-brandDark">0</span>
+                  <span class="rounded-full bg-brandPink/10 px-3 py-1 text-xs font-bold text-brandPink">+5.7%</span>
+                </div>
+                <p class="mt-2 text-xs text-slate-500">تومان</p>
+              </article>
+            </div>
+
+            <div class="mt-6 grid gap-6 lg:grid-cols-3">
+              <div class="lg:col-span-2 rounded-2xl border border-borderLight bg-white p-4 shadow-card">
+                <div class="mb-4 flex items-center justify-between gap-3">
+                  <h3 class="text-lg font-extrabold text-brandDark">روند فروش</h3>
+                  <span class="text-xs font-bold text-slate-500">داینامیک با hover</span>
+                </div>
+                <div class="h-[320px]">
+                  <canvas id="dashboardChart"></canvas>
                 </div>
               </div>
-              <div>
-                <div class="mb-2 flex justify-between text-sm font-bold text-slate-500">
-                  <span>خط 2</span><span>67%</span>
-                </div>
-                <div class="h-3 w-full overflow-hidden rounded-full bg-slate-100">
-                  <div class="h-full w-[67%] rounded-full bg-brandBlue"></div>
-                </div>
-              </div>
-              <div>
-                <div class="mb-2 flex justify-between text-sm font-bold text-slate-500">
-                  <span>خط 3</span><span>91%</span>
-                </div>
-                <div class="h-3 w-full overflow-hidden rounded-full bg-slate-100">
-                  <div class="h-full w-[91%] rounded-full bg-brandPink"></div>
+
+              <div class="rounded-2xl border border-borderLight bg-white p-4 shadow-card">
+                <h3 class="text-lg font-extrabold text-brandDark">سهم فروش</h3>
+                <div class="mt-4 h-[320px]">
+                  <canvas id="salesPie"></canvas>
                 </div>
               </div>
             </div>
           </div>
+
+          <!-- Production Panel -->
+          <div id="panel-production" class="dashboard-panel hidden">
+            <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+                <p class="text-sm font-bold text-slate-500">تولید امروز</p>
+                <div class="mt-3 flex items-end justify-between gap-3">
+                  <span id="prodToday" class="text-3xl font-extrabold text-brandDark">0</span>
+                  <span class="rounded-full bg-brandGreen/10 px-3 py-1 text-xs font-bold text-brandGreen">+9.2%</span>
+                </div>
+                <p class="mt-2 text-xs text-slate-500">واحد</p>
+              </article>
+
+              <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+                <p class="text-sm font-bold text-slate-500">نرخ ضایعات</p>
+                <div class="mt-3 flex items-end justify-between gap-3">
+                  <span id="prodWaste" class="text-3xl font-extrabold text-brandDark">0%</span>
+                  <span class="rounded-full bg-brandPink/10 px-3 py-1 text-xs font-bold text-brandPink">-1.1%</span>
+                </div>
+                <p class="mt-2 text-xs text-slate-500">کیفیت خط</p>
+              </article>
+
+              <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+                <p class="text-sm font-bold text-slate-500">بهره‌وری</p>
+                <div class="mt-3 flex items-end justify-between gap-3">
+                  <span id="prodEfficiency" class="text-3xl font-extrabold text-brandDark">0%</span>
+                  <span class="rounded-full bg-brandBlue/10 px-3 py-1 text-xs font-bold text-brandBlue">+3.4%</span>
+                </div>
+                <p class="mt-2 text-xs text-slate-500">OEE تقریبی</p>
+              </article>
+
+              <article class="group rounded-2xl border border-borderLight bg-bgLight p-5 transition hover:-translate-y-1 hover:shadow-hoverCard">
+                <p class="text-sm font-bold text-slate-500">سفارش معوق</p>
+                <div class="mt-3 flex items-end justify-between gap-3">
+                  <span id="prodBacklog" class="text-3xl font-extrabold text-brandDark">0</span>
+                  <span class="rounded-full bg-brandYellow/20 px-3 py-1 text-xs font-bold text-brandDark">-4.8%</span>
+                </div>
+                <p class="mt-2 text-xs text-slate-500">در صف تولید</p>
+              </article>
+            </div>
+
+            <div class="mt-6 grid gap-6 lg:grid-cols-3">
+              <div class="lg:col-span-2 rounded-2xl border border-borderLight bg-white p-4 shadow-card">
+                <div class="mb-4 flex items-center justify-between gap-3">
+                  <h3 class="text-lg font-extrabold text-brandDark">روند تولید</h3>
+                  <span class="text-xs font-bold text-slate-500">شفت‌ها و خروجی روزانه</span>
+                </div>
+                <div class="h-[320px]">
+                  <canvas id="productionChart"></canvas>
+                </div>
+              </div>
+
+              <div class="rounded-2xl border border-borderLight bg-white p-4 shadow-card">
+                <h3 class="text-lg font-extrabold text-brandDark">وضعیت خطوط</h3>
+                <div class="mt-4 space-y-4">
+                  <div>
+                    <div class="mb-2 flex justify-between text-sm font-bold text-slate-500">
+                      <span>خط 1</span><span>82%</span>
+                    </div>
+                    <div class="h-3 w-full overflow-hidden rounded-full bg-slate-100">
+                      <div class="h-full w-[82%] rounded-full bg-brandGreen"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="mb-2 flex justify-between text-sm font-bold text-slate-500">
+                      <span>خط 2</span><span>67%</span>
+                    </div>
+                    <div class="h-3 w-full overflow-hidden rounded-full bg-slate-100">
+                      <div class="h-full w-[67%] rounded-full bg-brandBlue"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="mb-2 flex justify-between text-sm font-bold text-slate-500">
+                      <span>خط 3</span><span>91%</span>
+                    </div>
+                    <div class="h-3 w-full overflow-hidden rounded-full bg-slate-100">
+                      <div class="h-full w-[91%] rounded-full bg-brandPink"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+
     <section id="contact" class="border-t border-borderLight bg-white py-20">
       <div class="mx-auto max-w-6xl px-6">
         <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
@@ -1040,9 +1121,9 @@
               <button type="submit" class="btn-press w-full rounded-xl bg-brandPink py-4 text-sm font-bold text-white shadow-md hover:bg-opacity-95 hover:shadow-lg">
                 درخواست جلسه مشاوره اولیه
               </button>
-                  <p id="formNotice" class="hidden rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-700">
-                    این بخش فعلاً غیرفعال است. لطفاً تا اطلاع ثانوی از طریق تماس تلفنی با ما در ارتباط باشید.
-                  </p>
+              <p id="formNotice" class="hidden rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-700">
+                این بخش فعلاً غیرفعال است. لطفاً تا اطلاع ثانوی از طریق تماس تلفنی با ما در ارتباط باشید.
+              </p>
             </form>
           </div>
         </div>
