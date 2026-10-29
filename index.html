@@ -436,9 +436,9 @@ body.dv-page-hidden *,body.dv-page-hidden *::before,body.dv-page-hidden *::after
 </style>
 <style id="datavance-service-square-fix">
 /* Keep service cards square without narrowing them to make room for the links. */
-#services { max-width: 1260px; }
+#services { max-width: 1560px; }
 #services .dv-service-links {
-  --dv-service-gap: 136px;
+  --dv-service-gap: 80px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: start;
 }
@@ -454,7 +454,7 @@ body.dv-page-hidden *,body.dv-page-hidden *::before,body.dv-page-hidden *::after
 #services .dv-service-links > article > p { font-size: 13px; line-height: 1.8; }
 #services .dv-service-links > article > ul { margin-top: 16px; font-size: 11px; line-height: 1.65; }
 @media (min-width: 1440px) {
-  #services .dv-service-links { --dv-service-gap: 116px; }
+  #services .dv-service-links { --dv-service-gap: 96px; }
   #services .dv-service-links > article { padding: 32px; }
 }
 /* Stack instead of squeezing three square cards on smaller screens. */
@@ -519,7 +519,40 @@ html{overflow-x:clip;scroll-padding-top:95px}body{overflow-x:clip}.dv-motion-pro
  #deliverables.dv-reel-enabled .dv-reel-shell{margin-top:14px}
 }
 @media(prefers-reduced-motion:reduce),(max-height:599px){.dv-wheel-controls,.dv-reel-status{display:none!important}}
-</style></head>
+</style><style id="trust-and-project-stories">
+/* Trust logos: explicit bounds, independent of utility CSS. */
+#about > div > div:last-child{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;margin-top:42px}
+#about a{box-sizing:border-box;height:132px;min-width:0;padding:18px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;border:1px solid #e4e9eb;border-radius:20px;isolation:isolate}
+#about a img{display:block;width:auto!important;height:auto!important;max-width:100%!important;max-height:92px!important;object-fit:contain;position:static;flex-shrink:1;transform:none!important}
+#about a:hover{border-color:#118ab2;box-shadow:0 12px 30px #073b4c0c}
+#projects .dv-project-card{cursor:pointer;position:relative}
+#projects .dv-project-card:focus-visible{outline:3px solid #118ab2;outline-offset:5px}
+.dv-story-hint{display:block;margin-top:10px;color:#118ab2;font-size:11px;font-weight:700}
+html.dv-story-open,html.dv-story-open body{overflow:hidden!important}
+.dv-story{padding:0;border:1px solid #ffffff90;border-radius:30px;width:min(900px,calc(100% - 32px));max-height:88dvh;color:#073b4c;background:#f8fafb;box-shadow:0 40px 140px #001a2c55;overflow:auto;overscroll-behavior:contain;font-family:inherit;direction:rtl}
+.dv-story::backdrop{background:#052b3ac7;backdrop-filter:blur(10px)}
+.dv-story[open]{animation:story-in .32s cubic-bezier(.2,.8,.2,1)}
+.dv-story-top{position:relative;padding:44px 42px 34px;background:radial-gradient(ellipse at 0 0,#118ab229,transparent 65%),linear-gradient(125deg,#073b4c,#092f40);color:white;overflow:hidden}
+.dv-story-top:after{content:'';position:absolute;width:210px;height:210px;left:-90px;bottom:-120px;border:1px solid #ffffff25;border-radius:50%;box-shadow:0 0 0 32px #ffffff06,0 0 0 64px #ffffff04;pointer-events:none}
+.dv-story-close{position:absolute;left:18px;top:16px;border:1px solid #ffffff40;border-radius:50%;width:38px;height:38px;background:#ffffff12;color:#fff;font-size:25px;cursor:pointer;display:grid;place-items:center}
+.dv-story-close:hover{background:#ffffff30}
+.dv-story-eyebrow{font-size:11px;letter-spacing:1px;color:#76dccb;display:block;margin-bottom:18px}
+.dv-story h2{font-size:clamp(23px,4vw,34px);font-weight:800;line-height:1.7;margin:0 0 12px}
+.dv-story-subtitle{font-size:13px;line-height:1.9;color:#c4d9e0;margin:0;max-width:650px}
+.dv-story-body{padding:30px 36px;display:grid;gap:18px}
+.dv-story-step{display:grid;grid-template-columns:46px 1fr;gap:16px;padding:23px;background:white;border:1px solid #e3eaed;border-radius:19px;box-shadow:0 5px 20px #073b4c03}
+.dv-story-step:last-child{background:linear-gradient(120deg,#f0fcf8,#fff);border-color:#c9eade}
+.dv-story-number{width:40px;height:40px;display:grid;place-items:center;border-radius:13px;background:#edf5f8;color:#118ab2;font-size:13px;font-weight:800}
+.dv-story-step:last-child .dv-story-number{background:#dff7eb;color:#168364}
+.dv-story-step h3{font-size:16px;margin:3px 0 12px;font-weight:800}
+.dv-story-step p{margin:0;white-space:pre-line;overflow-wrap:anywhere;font-size:14px;line-height:2.1;color:#607782}
+.dv-story-footer{padding:0 38px 26px;font-size:11px;color:#82949b;display:flex;justify-content:space-between;gap:12px}
+@keyframes story-in{from{opacity:0;transform:translateY(24px) scale(.95)}to{opacity:1;transform:none}}
+@media(max-width:760px){#about > div > div:last-child{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}#about a{height:110px;padding:14px}#about a img{max-height:78px!important}}
+@media(max-width:480px){#about > div > div:last-child{grid-template-columns:repeat(2,minmax(0,1fr))}.dv-story{border-radius:22px;max-height:91dvh}.dv-story-top{padding:60px 24px 26px}.dv-story-body{padding:20px 16px;gap:12px}.dv-story-step{padding:18px 14px;grid-template-columns:34px 1fr;gap:10px}.dv-story-number{width:32px;height:32px;border-radius:10px}.dv-story-footer{padding:0 24px 22px}}
+@media(prefers-reduced-motion:reduce){.dv-story[open]{animation:none}}
+</style>
+</head>
 
 <body class="bg-bgLight text-slate-700 antialiased selection:bg-brandBlue/20 selection:text-brandDark">
   <div class="animated-gradient h-1.5 w-full bg-gradient-to-r from-brandPink via-brandYellow to-brandGreen"></div>
@@ -813,43 +846,43 @@ html{overflow-x:clip;scroll-padding-top:95px}body{overflow-x:clip}.dv-motion-pro
           </div>
           <article class="dv-project-card" tabindex="0" style="grid-column:3;grid-row:1">
             <span class="dv-project-symbol" aria-hidden="true">📊</span>
-            <div><h3>پارت گوال</h3><p>تحلیل داده‌ها و ساخت داشبورد اکسل و گزارش چندساله عملکرد فروش</p></div>
+            <div><h3>پارت گوال</h3><p>تحلیل و عارضه‌یابی داده‌های فروش و طراحی داشبورد تحلیلی بلادرنگ</p></div>
           </article>
           <article class="dv-project-card" tabindex="0" style="grid-column:3;grid-row:2">
             <span class="dv-project-symbol" aria-hidden="true">📈</span>
-            <div><h3>سازمان آتش‌پاد ایرانیان</h3><p>تهیه و تدوین اسناد امکان‌سنجی اقتصادی و توسعه کسب‌وکار</p></div>
+            <div><h3>سازمان آتش‌پاد ایرانیان</h3><p>امکان‌سنجی اقتصادی و تهیهٔ مستندات و فرم‌های ارزیابی دانش‌بنیان</p></div>
           </article>
           <article class="dv-project-card" tabindex="0" style="grid-column:3;grid-row:3">
             <span class="dv-project-symbol" aria-hidden="true">🔗</span>
-            <div><h3>صنایع بسته‌بندی آپادان پلاست</h3><p>طراحی و بهینه‌سازی فرآیندهای زنجیره خرید و تأمین</p></div>
+            <div><h3>صنایع بسته‌بندی آپادان پلاست</h3><p>توسعهٔ نرم‌افزار تخصصی بهینه‌سازی مقدار و ترکیب خرید با هدف کاهش ضایعات</p></div>
           </article>
           <article class="dv-project-card" tabindex="0" style="grid-column:3;grid-row:4">
             <span class="dv-project-symbol" aria-hidden="true">📉</span>
-            <div><h3>شرکت اینوستوران</h3><p>طراحی، تحلیل و استخراج گزارش‌های آماری فصلی و سالانه</p></div>
+            <div><h3>شرکت اینوستوران</h3><p>تحلیل فصلی داده‌های بازار تأمین مالی و داده‌های داخلی شرکت</p></div>
           </article>
           <article class="dv-project-card" tabindex="0" style="grid-column:3;grid-row:5">
             <span class="dv-project-symbol" aria-hidden="true">🌐</span>
-            <div><h3>بازرگانی امین التجار</h3><p>تدوین و تحلیل گزارش چندسالانه صادرات محصولات</p></div>
+            <div><h3>بازرگانی امین التجار</h3><p>تحلیل داده‌های دپارتمان صادرات و ارائهٔ پیشنهادهای بهبود عملکرد</p></div>
           </article>
           <article class="dv-project-card" tabindex="0" style="grid-column:1;grid-row:1">
             <span class="dv-project-symbol" aria-hidden="true">⚙️</span>
-            <div><h3>صنایع فیلترسازی کیوان</h3><p>پیاده‌سازی پروژه‌های سیستم‌سازی، زمان‌سنجی و برنامه‌ریزی تولید</p></div>
+            <div><h3>صنایع فیلترسازی سبحان</h3><p>سیستم‌سازی و برنامه‌ریزی تولید، طراحی BOM، FPC و OPC و توسعهٔ سامانهٔ جامع مدیریت تولید</p></div>
           </article>
           <article class="dv-project-card" tabindex="0" style="grid-column:1;grid-row:2">
             <span class="dv-project-symbol" aria-hidden="true">🧩</span>
-            <div><h3>بارزگانی زمان فولاد شرق</h3><p>عارضه‌یابی و ساختاردهی به فرآیندهای عملیاتی کسب‌وکار</p></div>
+            <div><h3>بازرگانی زمان فولاد شرق</h3><p>دو سال همراهی برای استقرار واحد مستقل برنامه‌ریزی فروش و تحلیل سود و زیان و خواب کالا</p></div>
           </article>
           <article class="dv-project-card" tabindex="0" style="grid-column:1;grid-row:3">
             <span class="dv-project-symbol" aria-hidden="true">📦</span>
-            <div><h3>بازرگانی پخش کیان کودک</h3><p>طراحی داشبوردهای پیشرفته پایش موجودی و فروش</p></div>
+            <div><h3>بازرگانی پخش کیان کودک</h3><p>تحلیل داده‌ها و توسعهٔ سیستم شفاف‌سازی بدهکاران و مدیریت اطلاعات مطالبات</p></div>
           </article>
           <article class="dv-project-card" tabindex="0" style="grid-column:1;grid-row:4">
             <span class="dv-project-symbol" aria-hidden="true">🏭</span>
-            <div><h3>شرکت پایدار ابزار قریشی</h3><p>پیاده‌سازی سامانه تخصصی و مکانیزه انبارداری و چیدمان کالا</p></div>
+            <div><h3>شرکت پایدار ابزار قریشی</h3><p>دو سال مشاوره و همراهی در استقرار و تثبیت نظام برنامه‌ریزی تولید و مستندسازی فرایندها</p></div>
           </article>
           <article class="dv-project-card" tabindex="0" style="grid-column:1;grid-row:5">
             <span class="dv-project-symbol" aria-hidden="true">💰</span>
-            <div><h3>بازرگانی اطلس پخش</h3><p>مدیریت مالی، برنامه‌ریزی بودجه و تحلیل جریان‌های نقدینگی</p></div>
+            <div><h3>بازرگانی اطلس پخش</h3><p>برنامه‌ریزی داده‌محور فروش، تحلیل سود و زیان و خواب کالا و اصلاح فرایندهای فروش</p></div>
           </article>
         </div>
       </div>
@@ -2153,5 +2186,112 @@ html{overflow-x:clip;scroll-padding-top:95px}body{overflow-x:clip}.dv-motion-pro
  all('img').forEach(img=>{if(!img.complete)img.addEventListener('load',schedule,{once:true});});
  schedule();
 })();
-</script></body>
+</script>
+<dialog class="dv-story" id="project-story" aria-labelledby="story-company">
+ <header class="dv-story-top">
+  <button class="dv-story-close" type="button" aria-label="بستن داستان پروژه" autofocus>×</button>
+  <span class="dv-story-eyebrow">داستان یک تحول · مطالعهٔ موردی</span>
+  <span style="display:block;font-size:11px;color:#a8c6d0;margin-bottom:5px">عنوان شرکت</span>
+  <h2 id="story-company"></h2><p class="dv-story-subtitle" id="story-summary"></p>
+ </header>
+ <div class="dv-story-body">
+  <section class="dv-story-step"><span class="dv-story-number" aria-hidden="true">۰۱</span><div><h3>وضعیت موجود شرکت</h3><p id="story-before"></p></div></section>
+  <section class="dv-story-step"><span class="dv-story-number" aria-hidden="true">۰۲</span><div><h3>مسئله آن‌ها</h3><p id="story-problem"></p></div></section>
+  <section class="dv-story-step"><span class="dv-story-number" aria-hidden="true">۰۳</span><div><h3>وضع بعد از بهبود</h3><p id="story-after"></p></div></section>
+ </div>
+ <footer class="dv-story-footer"><span>DATAVANCE / داستان پروژه</span><span id="story-index"></span></footer>
+</dialog>
+
+<!-- برای ویرایش داستان هر پروژه، چهار مقدار company / before / problem / after را در فهرست زیر تغییر دهید. -->
+<script type="application/json" id="project-stories-data">[
+  {
+    "company": "پارت گوال",
+    "before": "فروش در پارت گوال با رویکردی سنتی پیش می‌رفت و داده‌های ثبت‌شده، هنوز به ابزاری منسجم برای تحلیل عملکرد و تصمیم‌گیری مدیریتی تبدیل نشده بودند.",
+    "problem": "مدیریت فروش به تصویری روشن، به‌روز و تحلیلی از عملکرد مجموعه نیاز داشت. داده‌های خام موجود باید بررسی و عارضه‌یابی می‌شدند تا بتوان از آن‌ها برای شناسایی مسائل و فرصت‌های بهبود استفاده کرد.",
+    "after": "طی جلسات مشترک با مدیریت فروش، نیازهای تحلیلی مجموعه شناسایی شد و داشبورد تحلیلی فروش با قابلیت نمایش بلادرنگ (Real-time) اطلاعات طراحی و تحویل داده شد. هم‌زمان، داده‌های خام تحلیل و عارضه‌یابی شدند تا مدیریت بتواند عملکرد فروش را شفاف‌تر پایش کند و تصمیم‌های خود را بر پایهٔ داده بگیرد."
+  },
+  {
+    "company": "سازمان آتش‌پاد ایرانیان",
+    "before": "آتش‌پاد ایرانیان محصولاتی توانمند با ظرفیت ورود به مسیر ارزیابی دانش‌بنیان داشت؛ بااین‌حال، پیگیری تخصصی این مسیر و آماده‌سازی مستندات موردنیاز در مجموعه انجام نشده بود.",
+    "problem": "برای پیشبرد فرایند ارزیابی، لازم بود ابعاد اقتصادی طرح‌ها بررسی و فرم‌ها و مستندات مرتبط با درخواست دانش‌بنیان تهیه و تکمیل شوند.",
+    "after": "مطالعات امکان‌سنجی اقتصادی انجام شد و فرم‌ها و مستندات مرتبط با فرایند دانش‌بنیان تهیه و تکمیل شدند. این همکاری، زیرساخت مستنداتی لازم برای پیگیری درخواست و ورود مجموعه به مسیر ارزیابی دانش‌بنیان را فراهم کرد."
+  },
+  {
+    "company": "صنایع بسته‌بندی آپادان پلاست",
+    "before": "خرید در آپادان پلاست به شیوه‌ای سنتی انجام می‌شد و تعیین مقدار و ترکیب خرید، از یک سازوکار منسجم برای بهینه‌سازی برخوردار نبود.",
+    "problem": "مجموعه به روشی دقیق‌تر برای تعیین میزان خرید نیاز داشت؛ روشی که نیازهای عملیاتی را پوشش دهد و هم‌زمان، از خرید نامتناسب و ایجاد ضایعات غیرضروری جلوگیری کند.",
+    "after": "نرم‌افزاری تخصصی برای بهینه‌سازی خرید توسعه داده شد تا پیشنهادهای خرید بر پایهٔ محاسبات و نیازهای مجموعه ارائه شوند. این ابزار، مبنایی دقیق‌تر برای تصمیم‌گیری دربارهٔ مقدار و ترکیب خرید فراهم کرد و مدیریت خرید با هدف کاهش ضایعات را پشتیبانی کرد."
+  },
+  {
+    "company": "شرکت اینوستوران",
+    "before": "در بازار تأمین مالی، حجم قابل‌توجهی از داده‌های خام در دسترس بود. داده‌های داخلی اینوستوران نیز در کنار این اطلاعات، ظرفیت ارزشمندی برای شناخت بازار داشتند، اما برای استفادهٔ تصمیم‌ساز به تحلیل منظم نیاز بود.",
+    "problem": "تبدیل داده‌های پراکندهٔ بازار و اطلاعات داخلی شرکت به تصویری منسجم و قابل‌استفاده، مستلزم بررسی و تحلیل دوره‌ای بود؛ به‌گونه‌ای که تحولات هر فصل به‌روشنی قابل‌پیگیری باشد.",
+    "after": "در قالب همکاری مستمر، داده‌های خام مرتبط با بازار تأمین مالی و داده‌های داخلی شرکت به‌صورت فصلی تحلیل می‌شوند. خروجی این همکاری، تحلیل‌های دوره‌ای است که به مجموعه کمک می‌کند تحولات بازار و اطلاعات کسب‌وکار خود را منظم‌تر بررسی کند."
+  },
+  {
+    "company": "بازرگانی امین التجار",
+    "before": "فعالیت فروش در بازرگانی امین التجار با رویکردی سنتی انجام می‌شد و ظرفیت داده‌های موجود برای تحلیل و بهبود عملکرد دپارتمان صادرات، به‌طور منسجم به کار گرفته نشده بود.",
+    "problem": "دپارتمان صادرات به شناخت دقیق‌تری از عملکرد خود و پیشنهادهایی کاربردی برای بهبود نیاز داشت؛ پیشنهادهایی که به‌جای اتکای صرف به تجربه، بر تحلیل داده‌های واقعی مجموعه استوار باشند.",
+    "after": "داده‌های مرتبط با دپارتمان صادرات بررسی و تحلیل شدند و بر پایهٔ یافته‌ها، پیشنهادهای بهبود ارائه شد. این همکاری، مبنایی داده‌محور برای بازنگری در عملکرد صادرات و تصمیم‌گیری دربارهٔ اقدامات اصلاحی فراهم کرد."
+  },
+  {
+    "company": "صنایع فیلترسازی سبحان",
+    "before": "تولید در صنایع فیلترسازی سبحان به شیوه‌ای سنتی و بدون چارچوب حرفه‌ای و مدون برای برنامه‌ریزی پیش می‌رفت. داده‌ها و مستندات پایه نیز برای پشتیبانی از یک نظام منسجم مدیریت تولید، نیازمند سامان‌دهی بودند.",
+    "problem": "مجموعه به ایجاد مبانی برنامه‌ریزی تولید، تعریف ساختار محصول، مستندسازی فرایندها و ابزاری یکپارچه برای مدیریت تولید نیاز داشت تا برنامه‌ریزی از اتکای صرف به تجربه فاصله بگیرد.",
+    "after": "برنامهٔ تولید تدوین شد و فهرست مواد و اجزای محصول (BOM)، نمودار جریان فرایند (FPC) و نمودار فرایند عملیات (OPC) طراحی شدند. همچنین داده‌های تولید مستندسازی و مبانی برنامه‌ریزی تعریف شد. در ادامه، سامانهٔ جامع مدیریت تولید توسعه یافت و تحویل مجموعه شد تا این زیرساخت‌ها در بستری یکپارچه قابل‌استفاده باشند."
+  },
+  {
+    "company": "بازرگانی زمان فولاد شرق",
+    "before": "فروش در بازرگانی زمان فولاد شرق بر پایهٔ روش‌های سنتی اداره می‌شد و واحدی مستقل و تثبیت‌شده برای برنامه‌ریزی داده‌محور فروش وجود نداشت.",
+    "problem": "گذار به یک ساختار مدرن، به هدف‌گذاری ماهانه، برنامه‌ریزی عملیاتی فروش، تحلیل سود و زیان و بررسی خواب کالا نیاز داشت. علاوه بر ابزار و گزارش، لازم بود توان اجرای این فعالیت‌ها در تیم داخلی شرکت شکل بگیرد.",
+    "after": "طی دو سال همراهی مشاوره‌ای و عملیاتی، هدف‌گذاری ماهانه و برنامه‌ریزی فروش اجرا شد و تحلیل‌های سود و زیان، خواب کالا و گزارش‌های مدیریتی موردنیاز در اختیار تیم قرار گرفت. این همکاری تا زمانی ادامه یافت که واحد برنامه‌ریزی فروش قوام گرفت و توانست فعالیت‌های خود را به‌صورت مستقل ادامه دهد؛ سپس نقش اجرایی تیم مشاور به پایان رسید."
+  },
+  {
+    "company": "بازرگانی پخش کیان کودک",
+    "before": "مدیریت مطالبات در پخش کیان کودک از شفافیت کافی برخوردار نبود و مدیریت، تصویر دقیق و منظمی از وضعیت بدهکاران و مبالغ مطالبات شرکت در اختیار نداشت.",
+    "problem": "نبود اطلاعات یکپارچه و قابل‌پیگیری، تشخیص اینکه هر مشتری چه میزان بدهی دارد و وضعیت مطالبات چگونه است را دشوار کرده بود. مجموعه به ابزاری دقیق برای سامان‌دهی و مشاهدهٔ این اطلاعات نیاز داشت.",
+    "after": "داده‌های مطالبات تحلیل شدند و سیستمی برای ثبت و نمایش منظم بدهکاران و مبلغ بدهی هر فرد توسعه یافت. به این ترتیب، اطلاعات مطالبات در ساختاری دقیق و قابل‌پیگیری قرار گرفت و مدیریت توانست دید روشن‌تری نسبت به وضعیت بدهی مشتریان داشته باشد."
+  },
+  {
+    "company": "شرکت پایدار ابزار قریشی",
+    "before": "تولید در پایدار ابزار قریشی با تکیه بر روش‌های سنتی پیش می‌رفت و برای شکل‌گیری یک نظام منسجم برنامه‌ریزی تولید، به تدوین مبانی، سامان‌دهی داده‌ها و مستندسازی فرایندها نیاز بود.",
+    "problem": "چالش مجموعه صرفاً تهیهٔ برنامه و مستندات نبود؛ لازم بود ساختار برنامه‌ریزی تولید در کار روزمرهٔ تیم جا بیفتد و توان اجرای پایدار آن در داخل سازمان شکل بگیرد.",
+    "after": "در یک همکاری مشاوره‌ای دوساله، برنامه‌ریزی تولید و سیستم‌سازی دنبال شد؛ فهرست مواد و اجزای محصول (BOM)، نمودار جریان فرایند (FPC) و نمودار فرایند عملیات (OPC) طراحی و داده‌ها و مبانی برنامه‌ریزی مستندسازی شدند. همراهی با تیم تا تثبیت ساختار و قوام‌گرفتن نظام برنامه‌ریزی تولید ادامه یافت تا مجموعه بتواند این رویکرد را در فعالیت‌های جاری خود به کار بگیرد."
+  },
+  {
+    "company": "بازرگانی اطلس پخش",
+    "before": "فروش در بازرگانی اطلس پخش با رویکردی سنتی انجام می‌شد و برنامه‌ریزی و فرایندهای فروش، به بازنگری و ساختاردهی داده‌محور نیاز داشتند.",
+    "problem": "مجموعه به هدف‌گذاری ماهانه، برنامه‌ریزی دقیق فروش، تحلیل سود و زیان و بررسی خواب کالا نیاز داشت. در کنار این موارد، اصلاح فرایندهای فروش نیز ضروری بود تا تصمیم‌های تحلیلی در اجرای روزمرهٔ تیم اثرگذار شوند.",
+    "after": "برنامه‌ریزی عملیاتی فروش و هدف‌گذاری ماهانه پیگیری شد و تحلیل‌های سود و زیان، خواب کالا و گزارش‌های مدیریتی موردنیاز شکل گرفت. هم‌زمان، فرایندهای فروش بازنگری و اصلاح شدند تا برنامه‌ریزی، تحلیل و اجرای فروش در چارچوبی منسجم‌تر و داده‌محور پیش بروند."
+  }
+]</script>
+<script>
+(()=>{
+ const stories=JSON.parse(document.getElementById('project-stories-data').textContent);
+ const dialog=document.getElementById('project-story');
+ const cards=[...document.querySelectorAll('#projects .dv-project-card')];
+ let trigger=null;
+ const put=(id,text)=>document.getElementById(id).textContent=text;
+ function open(card,i){
+  const story=stories[i];trigger=card;
+  put('story-company',story.company);put('story-summary',card.querySelector('p').textContent);
+  put('story-before',story.before);put('story-problem',story.problem);put('story-after',story.after);
+  put('story-index',`${String(i+1).padStart(2,'0')} / ${cards.length}`);
+  dialog.showModal();dialog.scrollTop=0;document.documentElement.classList.add('dv-story-open');
+ }
+ cards.forEach((card,i)=>{
+  card.setAttribute('role','button');card.setAttribute('aria-haspopup','dialog');card.setAttribute('aria-controls','project-story');
+  card.setAttribute('aria-label',`مشاهده داستان پروژه ${stories[i].company}`);
+  const hint=document.createElement('span');hint.className='dv-story-hint';hint.textContent='مشاهده داستان پروژه ↗';card.lastElementChild.append(hint);
+  card.addEventListener('click',()=>open(card,i));
+  card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(card,i);}});
+ });
+ dialog.querySelector('.dv-story-close').addEventListener('click',()=>dialog.close());
+ let backdropDown=false;
+ dialog.addEventListener('pointerdown',e=>{backdropDown=e.target===dialog;});
+ dialog.addEventListener('click',e=>{if(e.target===dialog&&backdropDown){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
+ dialog.addEventListener('close',()=>{document.documentElement.classList.remove('dv-story-open');if(trigger)trigger.focus({preventScroll:true});});
+})();
+</script>
+</body>
 </html>
