@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" class="scroll-smooth">
 <head>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('dv-theme')==='dark'?'dark':'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>datavance </title>
@@ -585,6 +586,39 @@ header>nav>.dv-globe-toggle{width:38px!important;height:38px;min-width:38px;min-
 header>nav>.dv-globe-toggle{align-self:center;display:inline-flex!important;align-items:center;justify-content:center;width:30px!important;height:30px;min-width:30px;min-height:30px;margin-block:0;padding:0;font-size:18px;line-height:1;vertical-align:middle}
 header>nav>.dv-globe-toggle span{display:flex;align-items:center;justify-content:center;width:18px;height:18px;font-size:18px;line-height:18px;transform:translateY(-1px)}
 </style>
+<style id="datavance-day-night">
+#themeToggle{align-self:center;display:inline-flex;align-items:center;justify-content:center;flex:0 0 30px;width:30px;height:30px;padding:0;margin:0;margin-inline-start:-10px;border:0;border-radius:50%;background:transparent;color:#46616e;cursor:pointer;font-family:Arial,sans-serif;font-size:23px;line-height:1}
+#themeToggle span{display:block;line-height:1;transform:translateY(-1px)}
+#themeToggle:hover{background:#edf5f7}#themeToggle:focus-visible{outline:2px solid #118ab2;outline-offset:3px}
+html[data-theme=dark]{color-scheme:dark;--night-bg:#0d1724;--night-panel:#152335;--night-raised:#1b2d42;--night-text:#e5edf5;--night-muted:#acbdcf;--night-line:#304359}
+html[data-theme=dark] body{background:var(--night-bg)!important;color:var(--night-text)!important}
+html[data-theme=dark] body>header{background:#101d2eef!important;border-color:var(--night-line)!important}
+html[data-theme=dark] :is(.bg-white,.bg-slate-50,.bg-gray-50,.bg-slate-100,.bg-brandLight,[class*="bg-white/"],#mobileMenu){background-color:var(--night-panel)!important}
+html[data-theme=dark] :is(.text-brandDark,.text-slate-900,.text-slate-800,.text-slate-700,.text-gray-900,.text-gray-800){color:var(--night-text)!important}
+html[data-theme=dark] :is(.text-slate-600,.text-slate-500,.text-gray-600,.text-gray-500){color:var(--night-muted)!important}
+html[data-theme=dark] :is(.border-borderLight,.border-slate-100,.border-slate-200,.border-gray-200){border-color:var(--night-line)!important}
+html[data-theme=dark] :is(.text-brandBlue,.dv-story-hint){color:#65c9e8!important}
+html[data-theme=dark] :is(#deliverables,#about,#contact,body>footer){background:var(--night-panel)!important;border-color:var(--night-line)!important}
+html[data-theme=dark] :is(.dv-project-board){background:radial-gradient(ellipse at 50% 45%,#1b3b52,transparent 65%),var(--night-bg)!important;border-color:var(--night-line)!important}
+html[data-theme=dark] :is(.dv-project-card,.dv-reel-card,.dv-story-step,.dv-wheel-controls button){background:var(--night-panel)!important;border-color:var(--night-line)!important;color:var(--night-text)!important}
+html[data-theme=dark] #projects .dv-project-card.dv-project-spotlight,html[data-theme=dark] #deliverables .dv-reel-card.is-wheel-active{background:#173a42!important;border-color:#3cafad!important}
+html[data-theme=dark] :is(.dv-project-card h3,.dv-project-hub h3,.dv-story-step h3,.dv-story-footer,.dv-wheel-controls){color:var(--night-text)!important}
+html[data-theme=dark] :is(.dv-project-card p,.dv-project-hub p,.dv-story-step p,.dv-story-step li,.dv-story-footer p){color:var(--night-muted)!important}
+html[data-theme=dark] :is(.dv-project-symbol,.dv-story-number){background:var(--night-raised)!important;color:#74d4e5!important}
+html[data-theme=dark] .dv-project-orbit{background:radial-gradient(circle,#eaf4f8 30%,#9eb9c9 100%)}
+html[data-theme=dark] .dv-story{background:var(--night-bg)!important;color:var(--night-text)!important;border-color:var(--night-line)!important}
+html[data-theme=dark] .dv-story-footer{background:var(--night-panel)!important;border-color:var(--night-line)!important}
+html[data-theme=dark] .dv-motion-nav{background:#142338ed;border-color:var(--night-line)}
+html[data-theme=dark] :is(input,textarea,select){background:var(--night-bg)!important;color:var(--night-text)!important;border-color:var(--night-line)!important}
+html[data-theme=dark] :is(input,textarea)::placeholder{color:#93a7bc}
+html[data-theme=dark] :is(#themeToggle,header>nav>.dv-globe-toggle,#menuBtn){color:#d5e5f4}
+html[data-theme=dark] :is(#themeToggle,header>nav>.dv-globe-toggle):hover{background:#263b52}
+/* Logo assets retain their original colors and a legible light backing. */
+html[data-theme=dark] body>header nav>a:first-child{background:#f4f7fa;border-radius:8px;padding:5px 8px}
+html[data-theme=dark] #about a{background:#f4f7fa!important;border-color:var(--night-line)!important}
+html[data-theme=dark] .dv-story-client{background:#f4f7fa}
+@media(prefers-reduced-motion:reduce){#themeToggle{transition:none}}
+</style>
 </head>
 
 <body class="bg-bgLight text-slate-700 antialiased selection:bg-brandBlue/20 selection:text-brandDark">
@@ -615,7 +649,7 @@ header>nav>.dv-globe-toggle span{display:flex;align-items:center;justify-content
         <a href="#dashboard" class="nav-link hover:text-brandBlue">نمونه داشبورد</a>
         <a href="#contact" class="nav-link hover:text-brandBlue">ارتباط با ما</a>
       </div>
-    <button id="languageToggle" class="dv-language-flags dv-globe-toggle" type="button" aria-label="Switch to English" title="Switch to English" dir="ltr"><span aria-hidden="true">🌐</span></button>
+    <button id="languageToggle" class="dv-language-flags dv-globe-toggle" type="button" aria-label="Switch to English" title="Switch to English" dir="ltr"><span aria-hidden="true">🌐</span></button><button id="themeToggle" type="button" aria-label="حالت تیره" title="حالت تیره" aria-pressed="false"><span aria-hidden="true">☾</span></button>
 </nav>
 
     <div id="mobileMenu" class="mobile-menu-animated md:hidden border-t border-borderLight bg-white">
@@ -2393,5 +2427,33 @@ button.addEventListener('click',()=>setLanguage(language==='fa'?'en':'fa'));
 let saved='fa';try{saved=localStorage.getItem('datavance-language')||'fa';}catch{}
 setLanguage(saved,false);
 })();</script>
+<script id="datavance-theme-script">
+(()=>{
+ const root=document.documentElement,button=document.getElementById('themeToggle');
+ const savedChartOptions=new WeakMap();
+ function charts(){
+  if(!window.Chart||!Chart.instances)return;
+  const dark=root.dataset.theme==='dark';
+  Object.values(Chart.instances).forEach(chart=>{
+   if(!savedChartOptions.has(chart))savedChartOptions.set(chart,{legend:chart.options.plugins?.legend?.labels?.color,scales:Object.fromEntries(Object.entries(chart.options.scales||{}).map(([k,v])=>[k,{tick:v.ticks?.color,grid:v.grid?.color}]))});
+   const original=savedChartOptions.get(chart);
+   if(chart.options.plugins?.legend?.labels)chart.options.plugins.legend.labels.color=dark?'#cbd9e8':original.legend;
+   for(const [key,scale] of Object.entries(chart.options.scales||{})){
+    if(scale.ticks)scale.ticks.color=dark?'#acbdcf':original.scales[key]?.tick;
+    if(scale.grid)scale.grid.color=dark?'#304359':original.scales[key]?.grid;
+   }
+   chart.update('none');
+  });
+ }
+ function label(){
+  const dark=root.dataset.theme==='dark',en=root.lang==='en';
+  const text=en?(dark?'Switch to light mode':'Switch to dark mode'):(dark?'تغییر به حالت روشن':'تغییر به حالت تیره');
+  button.title=text;button.setAttribute('aria-label',text);button.setAttribute('aria-pressed',String(dark));button.firstElementChild.textContent=dark?'☼':'☾';
+ }
+ button.addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('dv-theme',root.dataset.theme)}catch(e){}label();charts()});
+ new MutationObserver(()=>{label();charts()}).observe(root,{attributes:true,attributeFilter:['lang']});
+ window.addEventListener('load',charts,{once:true});label();charts();
+})();
+</script>
 </body>
 </html>
