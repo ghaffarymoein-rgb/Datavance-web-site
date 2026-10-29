@@ -575,6 +575,16 @@ header>nav>.dv-language-flags{display:flex!important;align-items:center;justify-
 @media(min-width:768px) and (max-width:1100px){header>nav{flex-wrap:wrap}header>nav>.md\:flex{display:flex;width:auto!important;flex:1;order:0!important;justify-content:flex-end;flex-wrap:wrap;gap:12px!important;font-size:12px}header>nav>.dv-language-flags{align-self:center}}
 @media(max-width:767px){header>nav{gap:10px!important}.dv-flag-button{min-width:38px;min-height:42px;font-size:25px}}
 </style>
+<style id="datavance-globe-toggle-style">
+header>nav>.dv-globe-toggle{width:38px!important;height:38px;min-width:38px;min-height:38px;padding:0;border:0;border-radius:50%;background:transparent;color:#46616e;cursor:pointer;font-size:23px;line-height:1;box-shadow:none;transition:background-color .18s ease}
+.dv-globe-toggle:hover{background:#edf5f7}.dv-globe-toggle:focus-visible{outline:2px solid #118ab2;outline-offset:3px}
+.dv-globe-toggle span{display:block;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+@media(prefers-reduced-motion:reduce){header>nav>.dv-globe-toggle{transition:none}}
+</style>
+<style id="datavance-globe-alignment-fix">
+header>nav>.dv-globe-toggle{align-self:center;display:inline-flex!important;align-items:center;justify-content:center;width:30px!important;height:30px;min-width:30px;min-height:30px;margin-block:0;padding:0;font-size:18px;line-height:1;vertical-align:middle}
+header>nav>.dv-globe-toggle span{display:flex;align-items:center;justify-content:center;width:18px;height:18px;font-size:18px;line-height:18px;transform:translateY(-1px)}
+</style>
 </head>
 
 <body class="bg-bgLight text-slate-700 antialiased selection:bg-brandBlue/20 selection:text-brandDark">
@@ -605,10 +615,7 @@ header>nav>.dv-language-flags{display:flex!important;align-items:center;justify-
         <a href="#dashboard" class="nav-link hover:text-brandBlue">نمونه داشبورد</a>
         <a href="#contact" class="nav-link hover:text-brandBlue">ارتباط با ما</a>
       </div>
-    <div id="languageToggle" class="dv-language-flags" dir="ltr" role="group" aria-label="انتخاب زبان / Choose language">
-<button type="button" class="dv-flag-button" data-language="fa" aria-label="فارسی" title="فارسی" aria-pressed="true"><span aria-hidden="true">🇮🇷</span></button>
-<button type="button" class="dv-flag-button" data-language="en" aria-label="English" title="English" aria-pressed="false"><span aria-hidden="true">🇺🇸</span></button>
-</div>
+    <button id="languageToggle" class="dv-language-flags dv-globe-toggle" type="button" aria-label="Switch to English" title="Switch to English" dir="ltr"><span aria-hidden="true">🌐</span></button>
 </nav>
 
     <div id="mobileMenu" class="mobile-menu-animated md:hidden border-t border-borderLight bg-white">
@@ -2373,7 +2380,7 @@ if(window.Chart)Chart.register({id:'datavanceLanguage',beforeUpdate:chartLanguag
 const button=document.getElementById('languageToggle');
 function setLanguage(next,persist=true){
  language=next==='en'?'en':'fa';document.documentElement.lang=language;document.documentElement.dir=language==='en'?'ltr':'rtl';
- button.querySelectorAll('[data-language]').forEach(flag=>flag.setAttribute('aria-pressed',String(flag.dataset.language===language)));
+ button.setAttribute('aria-label',language==='fa'?'Switch to English':'تغییر زبان به فارسی');button.title=language==='fa'?'Switch to English':'تغییر زبان به فارسی';
  document.title=language==='en'?'Datavance | Data Analytics & Business Optimization':originalTitle;
  render();
  if(window.Chart)Object.values(Chart.instances).forEach(chart=>chart.update('none'));
@@ -2382,7 +2389,7 @@ function setLanguage(next,persist=true){
  window.dispatchEvent(new Event('resize'));
 }
 const originalTitle=document.title;
-button.addEventListener('click',event=>{const flag=event.target.closest('[data-language]');if(flag)setLanguage(flag.dataset.language);});
+button.addEventListener('click',()=>setLanguage(language==='fa'?'en':'fa'));
 let saved='fa';try{saved=localStorage.getItem('datavance-language')||'fa';}catch{}
 setLanguage(saved,false);
 })();</script>
