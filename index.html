@@ -638,6 +638,19 @@ html[data-theme=dark] #sliderErrorMsg{color:#f1f5f9!important}
 html[data-theme=dark] #about a{color:#073b4c!important}
 html[data-theme=dark] #about a .text-brandDark{color:#073b4c!important}
 </style>
+<style id="footer-orbit-refinement">
+/* Remove the added frame, without repainting the original logo artwork. */
+html[data-theme=dark] body>header nav>a:first-child{background:transparent!important;border:0!important;border-radius:0!important;padding:0!important;box-shadow:none!important}
+body>header nav>a:first-child img{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+html[data-theme=dark] body>header nav>a:first-child img{filter:brightness(1.7) saturate(.85)}
+html[data-theme=dark] #dv-site-footer{background:var(--footer-security-color,#073b4c)!important;border-color:#ffffff24!important}
+html[data-theme=dark] body>footer .text-brandDark{color:#f0f7fb!important}
+html[data-theme=dark] body>footer .text-slate-400{color:#bcd0db!important}
+</style>
+<style id="contact-color-match">
+html[data-theme=dark] #contact{background:var(--footer-security-color,#073b4c)!important;border-color:#ffffff24!important}
+html[data-theme=dark] #contact .text-slate-500,html[data-theme=dark] #contact .text-slate-600{color:#c0d2dc!important}
+</style>
 </head>
 
 <body class="bg-bgLight text-slate-700 antialiased selection:bg-brandBlue/20 selection:text-brandDark">
@@ -1486,7 +1499,7 @@ html[data-theme=dark] #about a .text-brandDark{color:#073b4c!important}
     </section>
   </main>
 
-  <footer class="border-t border-borderLight bg-slate-50 py-12">
+  <footer id="dv-site-footer" class="border-t border-borderLight bg-slate-50 py-12">
     <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 sm:flex-row">
       <div class="text-center sm:text-right">
         <p class="text-sm font-bold text-brandDark">datavance</p>
@@ -2477,6 +2490,9 @@ setLanguage(saved,false);
  new MutationObserver(()=>{label();charts()}).observe(root,{attributes:true,attributeFilter:['lang']});
  window.addEventListener('load',charts,{once:true});label();charts();
 })();
+</script>
+<script id="footer-color-match">
+(()=>{const root=document.documentElement;const security=document.querySelector('.dv-project-privacy .bg-brandDark');function match(){if(security)root.style.setProperty('--footer-security-color',getComputedStyle(security).backgroundColor)}match();new MutationObserver(match).observe(root,{attributes:true,attributeFilter:['data-theme']})})();
 </script>
 </body>
 </html>
