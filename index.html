@@ -593,7 +593,7 @@ header>nav>.dv-globe-toggle span{display:flex;align-items:center;justify-content
 html[data-theme=dark]{color-scheme:dark;--night-bg:#0d1724;--night-panel:#152335;--night-raised:#1b2d42;--night-text:#e5edf5;--night-muted:#acbdcf;--night-line:#304359}
 html[data-theme=dark] body{background:var(--night-bg)!important;color:var(--night-text)!important}
 html[data-theme=dark] body>header{background:#101d2eef!important;border-color:var(--night-line)!important}
-html[data-theme=dark] :is(.bg-white,.bg-slate-50,.bg-gray-50,.bg-slate-100,.bg-brandLight,[class*="bg-white/"],#mobileMenu){background-color:var(--night-panel)!important}
+html[data-theme=dark] :is(.bg-white,.bg-slate-50,.bg-gray-50,.bg-slate-100,.bg-brandLight,.bg-bgLight,[class~="bg-white/80"],[class~="bg-white/95"],#mobileMenu){background-color:var(--night-panel)!important}
 html[data-theme=dark] :is(.text-brandDark,.text-slate-900,.text-slate-800,.text-slate-700,.text-gray-900,.text-gray-800){color:var(--night-text)!important}
 html[data-theme=dark] :is(.text-slate-600,.text-slate-500,.text-gray-600,.text-gray-500){color:var(--night-muted)!important}
 html[data-theme=dark] :is(.border-borderLight,.border-slate-100,.border-slate-200,.border-gray-200){border-color:var(--night-line)!important}
@@ -618,6 +618,25 @@ html[data-theme=dark] body>header nav>a:first-child{background:#f4f7fa;border-ra
 html[data-theme=dark] #about a{background:#f4f7fa!important;border-color:var(--night-line)!important}
 html[data-theme=dark] .dv-story-client{background:#f4f7fa}
 @media(prefers-reduced-motion:reduce){#themeToggle{transition:none}}
+</style>
+<style id="night-readability-fixes">
+html[data-theme=dark] #dashboard .dashboard-panel article{background:#1b2d42!important;border-color:#385069!important}
+html[data-theme=dark] #dashboard .dashboard-panel article .text-brandDark{color:#f0f6fc!important}
+html[data-theme=dark] #dashboard .dashboard-panel article .text-slate-500{color:#bdcddd!important}
+html[data-theme=dark] .text-brandGreen{color:#55dfb3!important}
+html[data-theme=dark] .text-brandPink{color:#ff8da8!important}
+html[data-theme=dark] .dashboard-tab.active-tab{background:#096376!important;color:#fff!important}
+html[data-theme=dark] .dashboard-tab:not(.active-tab){background:#243951!important;color:#dce8f4!important}
+html[data-theme=dark] #gallery .sliderDot{background:#a6b5c9!important;box-shadow:0 0 0 1px #102437}
+html[data-theme=dark] #gallery .sliderDot.slider-dot-active{background:#fff!important}
+#sliderTrack .media-zoom>div{direction:rtl}
+html[lang=en] #sliderTrack .media-zoom>div{direction:ltr}
+#sliderTrack img{filter:none!important;opacity:1!important;visibility:visible!important;background:#f1f5f9}
+html[data-theme=dark] #sliderError{background:#243247!important;border-color:#ff8da8!important}
+html[data-theme=dark] #sliderErrorMsg{color:#f1f5f9!important}
+/* Keep logo tiles light: their original artwork must not be recolored. */
+html[data-theme=dark] #about a{color:#073b4c!important}
+html[data-theme=dark] #about a .text-brandDark{color:#073b4c!important}
 </style>
 </head>
 
@@ -996,7 +1015,7 @@ html[data-theme=dark] .dv-story-client{background:#f4f7fa}
 
         <div class="mt-5 overflow-hidden rounded-2xl border border-borderLight bg-white shadow-card">
           <div class="relative w-full overflow-hidden bg-slate-900/5" style="aspect-ratio: 16 / 9;">
-            <div id="sliderTrack" class="absolute inset-0 flex transition-transform duration-700 ease-out">
+            <div id="sliderTrack" dir="ltr" class="absolute inset-0 flex transition-transform duration-700 ease-out">
               <div class="media-zoom relative h-full w-full shrink-0">
                 <img data-src="image/picture_1.jpg" alt="Slide 1" class="h-full w-full object-cover" />
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 text-white">
@@ -1576,20 +1595,24 @@ html[data-theme=dark] .dv-story-client{background:#f4f7fa}
 
       function slideTo(idx) {
         currentIndex = (idx + slides.length) % slides.length;
-        track.style.transform = `translateX(${currentIndex * 100}%)`;
+        track.style.transform = `translateX(${-currentIndex * 100}%)`;
         updateActiveDot(currentIndex);
+        syncSlideError();
       }
 
-      function displayLoadError(fileName) {
+      function syncSlideError() {
         if (!errorBanner || !errorMsg) return;
-        errorMsg.dataset.failedFile = fileName; errorMsg.textContent = document.documentElement.lang === "en" ? `Could not load "${fileName}".` : `بارگذاری فایل "${fileName}" انجام نشد.`;
-        errorBanner.classList.remove('hidden');
-
-        clearTimeout(errorTimeout);
-        errorTimeout = setTimeout(() => {
-          errorBanner.classList.add('hidden');
-        }, 5000);
+        const img = slides[currentIndex].querySelector('img');
+        const fileName = img.dataset.failedFile;
+        errorBanner.classList.toggle('hidden', !fileName);
+        if (fileName) {
+          errorMsg.dataset.failedFile = fileName;
+          errorMsg.textContent = document.documentElement.lang === 'en'
+            ? `Could not load "${fileName}". Check the image folder and filename.`
+            : `بارگذاری «${fileName}» انجام نشد؛ مسیر پوشه و نام فایل را بررسی کنید.`;
+        } else { delete errorMsg.dataset.failedFile; }
       }
+      new MutationObserver(syncSlideError).observe(document.documentElement, {attributes:true, attributeFilter:['lang']});
 
       function restartAutoPlay() {
         clearInterval(autoPlayTimer);
@@ -1601,8 +1624,6 @@ html[data-theme=dark] .dv-story-client{background:#f4f7fa}
       const images = track.querySelectorAll('img[data-src]');
       images.forEach((img) => {
         const sourceUrl = img.getAttribute('data-src');
-        img.setAttribute('src', sourceUrl);
-
         img.addEventListener('error', function () {
           const fallbackSvg =
             "data:image/svg+xml;charset=utf-8," +
@@ -1619,8 +1640,10 @@ html[data-theme=dark] .dv-story-client{background:#f4f7fa}
 
           img.src = fallbackSvg;
           img.classList.add('object-contain');
-          displayLoadError(sourceUrl);
+          img.dataset.failedFile = sourceUrl;
+          syncSlideError();
         }, { once: true });
+        img.setAttribute('src', sourceUrl);
       });
 
       if (btnPrev) btnPrev.addEventListener('click', () => {
